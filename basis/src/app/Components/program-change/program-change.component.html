@@ -1,0 +1,46 @@
+<div class="card m-3" style="direction: ltr;">
+    <h3 class="card-header" style="background-color:#FF6600;color: aliceblue;font-family: cursive;font-size: x-large;">
+        <button mat-button matSuffix mat-icon-button (click)="onCloase()" aria-label="Clear"><mat-icon>clear</mat-icon></button>
+        <div style="text-align: right;" *ngIf="from==1"> עדכון חברה</div>
+        <div style="text-align: right;" *ngIf="from==0"> הוספת חברה</div>
+    </h3>
+
+    <div class="card-body">
+        <form class="col-sm-12 form-content" *ngIf="DataForm,products" [formGroup]="DataForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>ProgramName</label>
+                    <input type="text" formControlName="ProgramName" class="form-control" [(ngModel)]="program.ProgramName" [ngClass]="{ 'is-invalid': submitted && f.ProgramName.errors }" />
+                    <div *ngIf="submitted && f.ProgramName.errors" class="invalid-feedback">
+                        <div *ngIf="f.ProgramName.errors.required">CompanyName is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-5">
+                <label>Program Img</label>
+                <input type="text" formControlName="Img" class="form-control" [(ngModel)]="program.ImgProgram" [ngClass]="{ 'is-invalid': submitted && f.Img.errors }" />
+                <div *ngIf="submitted && f.Img.errors" class="invalid-feedback">
+                    <div *ngIf="f.Img.errors.required">Company Img is required</div>
+                </div>
+            </div>
+
+
+            <div class="form-group col-5">
+                <label>Comment</label>
+                <input type="text" formControlName="Comment" class="form-control" [(ngModel)]="program.Comment" [ngClass]="{ 'is-invalid': submitted && f.Comment.errors }" />
+                <div *ngIf="submitted && f.Comment.errors" class="invalid-feedback">
+                    <div *ngIf="f.Comment.errors.required">Company Img is required</div>
+                </div>
+            </div>
+            {{parentData}}
+            <div class="text-center">
+                <button class="btn btn-primary mr-1" style="background-color: #FF6600" (click)="onCloase()">אישור</button>
+                <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Clear</button> -->
+                <!-- <div class="col-sm-6">
+                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                </div> -->
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+.header {
+    height: 50%;
+    width: 101.2%;
+    background-color: #FF6600;
+    font-family: Tahoma;
+    direction: rtl;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu {
+    width: 20%;
+    background-color: rgb(50, 50, 150);
+}
+
+.footer {
+    width: 101.2%;
+    height: 15%;
+    background-color: #333333;
+}
+
+.main {
+    background-color: rgb(232, 232, 235);
+    font-size: inherit;
+    font-family: cursive;
+    font-family: Tahoma;
+    direction: rtl;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+/* kkkkkkkkkkk */
+
+
+/* 
+<button  (click)="accordingTO(1)"  [routerLink]="'/adults'"  routerLinkActive="mat-raised-button" ><img class="d-block w-50" width="220" height="230"  src= {{RidesList[0].Img}}  alt="Third slide" > </button>
+<button value="1" (click)="accordingTO(0)"  [routerLink]="'/adults'"  routerLinkActive="mat-raised-button" ><img class="d-block w-50" width="220" height="230" src= {{RidesList[1].Img}}  alt="Third slide"></button>
+<button><img class="d-block w-50" width="220" height="230" src= "https://www.lunapark.co.il/data/images/1956_bbb0776c1781ae0a07422223da394901.jpg"  alt="Third slide"></button>
+<button  width="220" height="230"><h1 style="color: red;">הוראות הגעה ללונה פארק</h1>
+    <p  style="color: red;"> קרא עוד </p> */

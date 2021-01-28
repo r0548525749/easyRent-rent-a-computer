@@ -1,0 +1,28 @@
+<router-outlet></router-outlet>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">האם טופלה?</th>
+            <th scope="col">התלונה</th>
+            <th scope="col">מס לקוח</th>
+            <th scope="col">מס תלונה</th>
+            <th scope="col">למחיקת תלונה</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of complainList">
+            <!-- <th scope="row">1</th> -->
+            <td>{{s.HasCeared}}</td>
+            <td>{{s.Complaints}}</td>
+            <td>{{s.IdCustomer}}</td>
+            <td>{{s.IdComplaints}}</td>
+            <td>
+                <div class="example-button-container">
+                    <button mat-mini-fab color="warn" (click)="deletComplain(s.IdComplaints)"><mat-icon>delete</mat-icon></button>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

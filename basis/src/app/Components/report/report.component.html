@@ -1,0 +1,36 @@
+<router-outlet>
+</router-outlet>
+
+<div class="chart-wrapper" width="50" height="50">
+    <canvas baseChart [data]="barChartData[0].data" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+  </canvas>
+</div>
+
+<!-- <canvas id="myChart" width="400" height="400"></canvas>
+<div>
+    <div class="row">
+        <div class="col-sm-12 btn btn-primary">
+            Batsman Performance Analysis
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;margin-bottom: 10px;">
+        <div class="col-sm-2">
+            <button class="btn btn-success" routerLink="/LineChart">Line Chart</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success" routerLink="/BarChart">Bar Chart</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success" routerLink="/PieChart">Pie Chart</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success" routerLink="/DoughnutChart">Doughnut Chart</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success" routerLink="/Polarchart">Polar Area</button>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+</div>
+<hr style="background-color:black" /> -->

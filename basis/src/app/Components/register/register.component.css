@@ -1,0 +1,73 @@
+   .ng-invalid.ng-touched.ng-dirty:not(form) {
+       border: 1px solid red;
+   }
+   
+   .is-invalid {
+       border: 2px solid red;
+   }
+   
+   .fontback {
+       height: 50px;
+       width: 300px;
+       background-color: salmon;
+       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+       font-style: unset;
+       color: teal;
+       text-align: center;
+   }
+   
+   .swal-modal {
+       background-color: rgba(63, 255, 106, 0.69);
+       border: 3px solid white;
+   }
+   
+   .lbl {
+       display: inline-block;
+       border: solid salmon;
+       padding: 10px;
+       margin: 20px;
+   }
+   
+   .fontform {
+       background-color: wheat;
+       font-family: cursive;
+       font-style: initial;
+       color: lightcoral;
+       display: flex;
+       flex-direction: column;
+   }
+   
+   .fieldfont {
+       width: 400px;
+       border-color: palevioletred;
+       color: lightcoral;
+       font-family: cursive;
+   }
+   
+   .example-form {
+       min-width: 150px;
+       max-width: 500px;
+       width: 100%;
+       background-color: grey;
+   }
+   
+   .example-full-width {
+       width: 100%;
+       background-color: grey;
+   }
+   
+   .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color: rgb(66, 134, 244);
+   }
+   
+   .styleInpute {
+       direction: ltr;
+       margin: 3rem;
+   }
+   
+   .mat-step-header .mat-step-icon-selected,
+   .mat-step-header .mat-step-icon-state-done,
+   .mat-step-header .mat-step-icon-state-edit {
+       background-color: #FF6600;
+       color: #fff;
+   }

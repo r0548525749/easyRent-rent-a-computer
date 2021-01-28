@@ -1,0 +1,62 @@
+<div>
+    <br><br>
+    <form style="text-align: center;">
+        <mat-form-field color="accent" [formGroup]="range">
+            <label> בחר תאריך התחלה</label>
+            <input formControlName="start" (blur)="checkStartDate(st)" #st [(ngModel)]="startDate" [(ngModel)]="disabled" [matDatepicker]="fromDate" name="startD">
+            <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+            <mat-datepicker #fromDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent" [formGroup]="range">
+            <label> בחר תאריך סיום</label>
+            <input formControlName="end" [(ngModel)]="endDate" #eh (blur)="checkEndDate(eh)" [matDatepicker]="toDate" name="endD">
+            <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+            <mat-datepicker #toDate></mat-datepicker>
+        </mat-form-field>
+        <br><br>
+        <!-- Grid row -->
+        <div>
+            <label for="default-picker">בחר שעת התחלה</label>
+            <div *ngIf="startHours">
+                <mat-select [(ngModel)]="sh" name="startH" (selectionChange)="checkstartHour()">
+                    <mat-option *ngFor="let s of startHours" [value]="s.numHour">
+                        {{s.formatHour}}
+                    </mat-option>
+                </mat-select>
+                <!-- <select (change)="checkstartHour()" [(ngModel)]="sh" [disabled]="!endDate || !startDate">
+                <option *ngFor="let i of startHours" [value]="i.numHour">{{i.formatHour}}</option>
+            </select> -->
+            </div>
+        </div>
+        <br><br>
+        <!-- Grid row -->
+        <div *ngIf="endHours">
+            <label for="default-picker">בחר שעת סיום</label>
+            <!-- <input type="time" id="default-picker" class="form-control" name="endH" [disabled]="!endDate" [(ngModel)]="endtime" placeholder="בחר שעת סיום"> -->
+            <!-- <button [disabled]="!endDate || !startDate" *ngFor="let i of endHours" (click)="checkendtHour(i.numHour)">{{i.formatHour}}</button> -->
+            <mat-select [(ngModel)]="eh1" #endHu="ngModel" name="endHou" (selectionChange)="checkendtHour()">
+                <mat-option *ngFor="let s of endHours" [value]="s.numHour">
+                    {{s.formatHour}}
+                </mat-option>
+            </mat-select>
+
+        </div>
+
+    </form>
+
+    <br><br>
+    <div class="row">
+        <button mat-button matSuffix mat-icon-button (click)="onCloase()" aria-label="Clear">     ביטול</button>
+        <button mat-button matSuffix mat-icon-button (click)="CheckDate1()" aria-label="Clear">יצרת הזמנה</button>
+    </div>
+</div>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+</mat-form-field>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="showErrMsg">
+    <strong>  שגיאה </strong>{{errMsg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="showErrMsg=!showErrMsg"> 
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>

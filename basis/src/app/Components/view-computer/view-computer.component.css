@@ -1,0 +1,196 @@
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+    background-color: grey;
+    font-family: cursive;
+    font-style: unset;
+    color: black;
+    text-align: center;
+}
+
+.title {
+    font-family: cursive;
+    color: black;
+}
+
+.mat-sort-header-container {
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    margin-right: 3rem;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+#borderDemo {
+    border: 5px dashed salmon;
+    border-radius: 35px;
+}
+
+#demotext {
+    text-shadow: 4px 3px 0px #7A7A7A, 0px -7px 18px rgba(238, 242, 218, 0.53);
+    color: #B5B5B5;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
+
+/* //card */
+
+.example-card {
+    max-width: 400px;
+    margin: 10px;
+}
+
+.example-header-image {
+    /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
+    background-size: cover;
+}
+
+.mat-form-field {
+    margin-right: 12px;
+}
+
+.dateClaas2 {
+    background-color: crimson;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: rtl;
+    font-family: 'AtlasRegular';
+    border-spacing: 0;
+    font-size: 13px;
+    border-collapse: collapse;
+    text-align: center;
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    height: 100%;
+    display: block;
+    line-height: 25px;
+    background-color: #d4f296;
+    font-weight: bold;
+    border: solid 1px #000 !important;
+    opacity: .6;
+    color: #000 !important;
+}
+
+.black-background {
+    background-color: #ffffff;
+}
+
+.white {
+    color: #f36818;
+}
+
+.example-container {
+    width: 400px;
+    height: 200px;
+    margin: 12px;
+    border: 1px solid #555;
+}
+
+mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* sidenav */
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(232, 232, 235);
+    border: none;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    background-color: rgb(232, 232, 235);
+}
+
+:host ::ng-deep .custom-spinner circle {
+    stroke: #FF6600;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}

@@ -1,0 +1,53 @@
+<br><br>
+<div class="container" style="text-align: right;">
+    <form [formGroup]="returnForm">
+        <!-- Grid row -->
+        <div class="form-row">
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם פרטי</label>
+                <input type="text" formControlName="firstName" id="defaultContactFormName" class="form-control" placeholder="שם פרטי">
+            </div>
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם משפחה</label>
+                <input type="text" formControlName="lastName" id="defaultContactFormName" class="form-control" placeholder="שם משפחה">
+            </div>
+        </div>
+        <div class="form-row">
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם משתמש-מייל</label>
+                <input type="text" formControlName="userName" id="defaultContactFormName" class="form-control" placeholder="שם משתמש">
+            </div>
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">מספר הזמנה</label>
+                <input type="text" formControlName="numOrder" id="defaultContactFormName" class="form-control" placeholder="מספר הזמנה">
+            </div>
+        </div>
+        <!-- Grid row -->
+        <!-- <div class="md-form md-outline">
+            <label for="default-picker">שעת החזרה</label>
+            <input type="time" id="default-picker" class="form-control" [(ngModel)]="time" placeholder="שעת החזרה">
+        </div>
+        <br><br> -->
+        <!-- Message -->
+        <div class="form-group">
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="האם במהלך השימוש המוצר נפגם ? נא לפרט הכל כדי למנוע אי נעימות."></textarea>
+        </div>
+        <br><br>
+        <!-- Default input -->
+        <div class="form-group col-md-6">
+            <label for="defaultContactFormName">סכום קנס </label>
+
+            <input type="text" name="aaa" id="defaultContactFormName" class="form-control" placeholder="סכום קנס " (click)="addSum()" value={{this.rulesSer.CurrentRull}}‏>
+        </div>
+        <div>
+            <a routerLink="/Rule" style="color: #FF6600;"> לחישוב הקנס</a>
+        </div>
+        <br><br>
+        <button class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" (click)="CheackReturnOrderByIdAndTime()" type="submit">לאישור</button>
+    </form>
+</div>
+<br><br>

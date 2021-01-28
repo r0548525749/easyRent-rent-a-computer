@@ -1,0 +1,184 @@
+<div style="font-family: cursive;">
+    <mat-drawer-container class="example-container" autosize>
+        <div class="example-sidenav-content" style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
+            <button type="button" mat-button (click)="drawer.toggle()">
+           <mat-icon>menu</mat-icon>לחץ להצגת הסינונים
+          </button>
+        </div>
+        <mat-drawer #drawer class="example-sidenav" mode="side" style=" background-color: rgb(232, 232, 235);">
+            <!-- style="font-family: monospace;font-weight: bold;" -->
+            <!-- הצגת כל הסינונים -->
+            <div style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">
+                <div><br><br>
+                    <form style="text-align: center;">
+                        <div>סמן את סוג המחשב שברצונך לבחור: </div>
+                        <mat-form-field>
+                            <mat-label>סינון לפי תוכנה:</mat-label>
+                            <mat-select [formControl]="toppings" multiple (selectionChange)="filterByProgramName($event.value)">
+                                <mat-select-trigger>
+                                    {{toppings.value ? toppings.value[0] : ''}}
+                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                      (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let topping of programList" [value]="topping.ProgramName" style="font-family: Calibri;color: grey;text-align: right">
+                                    <img class="img-fluid" width="20px" height="20px" type="button" src={{topping.ImgProgram}} alt="Sample image" class="magazine-section my-2">‏ {{topping.ProgramName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p>התוכנה שנבחרה : {{toppings.value}} </p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי זיכרון :</mat-label>
+                            <mat-select [(ngModel)]="selectedMemory" name="price">
+                                <mat-option *ngFor="let s of memmoryList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> הזיכרון שנבחר :{{selectedMemory}}</p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי סוג :</mat-label>
+                            <mat-select [(ngModel)]="selectedType" name="price">
+                                <mat-option *ngFor="let s of typeList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> הסוג שנבחר :{{selectedType}}</p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי מעבד :</mat-label>
+                            <mat-select [(ngModel)]="selectedProcess" name="price">
+                                <mat-option *ngFor="let s of processList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> המעבד שנבחר :{{selectedProcess}}</p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי שם חברה :</mat-label>
+                            <mat-select [(ngModel)]="selectedCompany" name="price">
+                                <mat-option *ngFor="let s of companyList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> החברה שנבחרה :{{selectedCompany}}</p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי דיסק קשיח :</mat-label>
+                            <mat-select [(ngModel)]="selectedHardDisk" name="price">
+                                <mat-option *ngFor="let s of hardDiskList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> הדיסק שנבחר :{{selectedHardDisk}}</p>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>סינון לפי גודל מסך :</mat-label>
+                            <mat-select [(ngModel)]="selectedScreanSize" name="price">
+                                <mat-option *ngFor="let s of screanSizeList" [value]="s" style="font-family: Calibri;color: grey;text-align: right">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p> הגודל מסך שנבחר :{{selectedScreanSize}}</p>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </mat-drawer>
+        <!-- הצגת שני הכפתורים של הטבלה ושל הכרטיסים -->
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="italic" (click)="shwoButton1 =true ;shwoButton2 =false " style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">הצגת הנתונים בטבלה</mat-button-toggle>
+            <mat-button-toggle value="underline" (click)="shwoButton2 =true;shwoButton1 =false" style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">הצגת הנתונים בכרטיסיות</mat-button-toggle>
+        </mat-button-toggle-group>
+        <!-- <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button routerLink="/viewBag"><i class="material-icons">&#xE147;</i> <span>view Shopping Bag</span></button> -->
+        <br><br>
+        <!-- הצגת הטבלה -->
+        <form style="text-align: center;" *ngIf="shwoButton1" style="font-family: monospace;">
+            <table matSort style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
+                <!-- <div id="borderDemo">Editable text -->
+                <tr style="font-weight: bold;">
+                    <th>קוד מחשב </th>
+                    <!-- <th>LepTopId </th>
+                <th>CompanyId </th> -->
+                    <th>חברה </th>
+                    <th>סוג </th>
+                    <th>מעבד </th>
+                    <th>זיכרון </th>
+                    <th>דיסק קשיח </th>
+                    <th>גודל מסך </th>
+                    <th>תוכנות </th>
+                    <th>תמונה </th>
+                </tr>
+                <!-- פלטור הנתונים של הטבלה כל פעם שבוחרים על סינון למעלה -->
+                <tr *ngFor="let s of computerWithProgramListFilter | try:selectedMemory:'selectedMemory'|try:selectedType:'selectedType' |
+             try:selectedProcess:'selectedProcess'| try:selectedCompany:'selectedCompany' | try:selectedHardDisk:'selectedHardDisk'
+             | try:selectedScreanSize:'selectedScreanSize'">
+                    <td>{{s.Id}}</td>
+                    <!-- <td>{{s.LepTopId}}</td>
+                <td>{{s.CompanyId}}</td> -->
+                    <td>{{s.CompanyName}}</td>
+                    <td>{{s.Type}}</td>
+                    <td>{{s.Prossess}}</td>
+                    <td>{{s.Memory}}</td>
+                    <td>{{s.HardDisk}}</td>
+                    <td>{{s.ScreenSize}}</td>
+                    <td>
+                        <!-- הצגה של התוכנות עם פסיקים -->
+                        <label *ngFor="let p of s.Programslist ; let i = index">
+                        {{p.ProgramName}}
+                        <span *ngIf="i<s.Programslist.length-1">,</span>
+                    </label>
+                    </td>
+                    <td><img class="d-block w-50" width="50" height="200" src={{s.ComputerImg}} alt="Third slide"> </td>
+                    <td>
+                        <td style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
+                            <mat-calendar [dateClass]="dateClass(s)" (selectedChange)="getDay($event)" (click)="create(s)"></mat-calendar>
+                        </td>
+                </tr>
+            </table><br>
+        </form>
+        <!-- <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner> -->
+
+        <mat-spinner class="custom-spinner" mode="indeterminate" value="100" [hidden]="!getData"></mat-spinner>
+
+        <!-- הצגה של הנתונים בכרטיסים -->
+        <div class="row" type="margin" alt="thumbnail" *ngIf="shwoButton2" style="font-family: Calibri;color: grey;text-align: right;margin: 5%;">
+            <mat-card class="example-card" *ngFor="let s of computerWithProgramListFilter">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(' + s.CompanyImg + ')'}"></div>
+                    <mat-card-title style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">{{s.CompanyName}}</mat-card-title>
+                    <mat-card-subtitle style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">{{s.Type}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <img mat-card-image src={{s.ComputerImg}} alt="Photo of the computer">
+                <mat-card-content>
+                    <p style="font-family: Calibri;color: grey;text-align: right;">
+                        This device has an {{s.Prossess}} processor and the screen resolution is {{s.ScreenSize}} amount of memory. This device has {{s.Memory}} and the hard disk is {{s.HardDisk}}. As well as the software that is on the computer there are also :
+                        <br>
+                        <label *ngFor="let p of s.Programslist ; let i = index">
+                        {{p.ProgramName}}
+                        <span *ngIf="i<s.Programslist.length-1">,</span>
+                        </label> programs.
+                    </p>
+                    <button mat-button style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">בחירת תאריך</button>
+                    <p>
+                        <mat-calendar [dateClass]="dateClass(s)" (selectedChange)="getDay($event)" (click)="create(s)"></mat-calendar>
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <!-- <button mat-button>SHARE</button> -->
+                </mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+            </mat-card>
+            <br> <br> <br> <br>
+        </div>
+
+    </mat-drawer-container>
+</div>

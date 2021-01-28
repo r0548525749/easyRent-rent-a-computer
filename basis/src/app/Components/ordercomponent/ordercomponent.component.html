@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <th>Id </th>
+        <th>FromDate </th>
+        <th>ToDate </th>
+        <th>ProudactId </th>
+        <th>MemberId </th>
+        <th>StoreId </th>
+        <th>DateAndTimeTake </th>
+        <th>DateAndTimeReturn </th>
+    </tr>
+    <tr *ngFor="let f of ordersList">
+        <td>{{f.Id}}</td>
+        <td>{{f.FromDate}}</td>
+        <td>{{f.ToDate}}</td>
+        <td>{{f.ProudactId}}</td>
+        <td>{{f.MemberId}}</td>
+        <td>{{f.StoreId}}</td>
+        <td>{{f.DateAndTimeTake}}</td>
+        <td>{{f.DateAndTimeReturn}}</td>
+    </tr>
+</table>

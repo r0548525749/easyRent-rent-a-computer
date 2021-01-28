@@ -1,0 +1,129 @@
+<router-outlet></router-outlet>
+<mat-horizontal-stepper [linear]="true" #stepper style="background-color: rgb(232, 232, 235);">
+    <mat-step [stepControl]="engineerForm">
+        <div class="container" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+            <form [formGroup]="engineerForm">
+                <ng-template matStepLabel style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">פרטי הרשמה</ng-template>
+                <h3>האם אתה מעונין בביטוח תמידי?</h3>
+                <mat-radio-group formControlName="insurance" aria-label="Select an option" class="mat-radio-button">
+                    <mat-radio-button [value]="true" required>כן</mat-radio-button><br>
+                    <mat-radio-button [value]="false" required>לא</mat-radio-button>
+                </mat-radio-group>
+                <h3>לתשומת לבך!</h3>
+                <h3>מעבר בין מסלולים כרוך בתשלום חד פעמי של 10 ₪
+                </h3>
+                <mat-radio-group formControlName="subscription" aria-label="Select an option">
+                    <mat-radio-button [value]="true" required> מנוי קל (בחינם)</mat-radio-button><br>
+                    <mat-radio-button [value]="false" required> מנוי קבוע</mat-radio-button>
+                </mat-radio-group>
+                <div class="card-container"></div>
+                <div>
+                    <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+                        <button mat-button matStepperNext>הבא</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="registerForm">
+
+        <div class="container" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+            <ng-template matStepLabel style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">פרטים אישים</ng-template>
+            <h3 class="card-header">לקוח חדש</h3>
+            <div class="card-body" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+                <form class="col-sm-12 form-content" *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+
+                        <div class="form-group col-5">
+                            <label>שם פרטי</label>
+                            <input type="text" formControlName="firstName" class="form-control" [(ngModel)]="customers.FirstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-5">
+                            <label>שם משפחה</label>
+                            <!-- <mdb-icon fas icon="user" class="text-white active"></mdb-icon> -->
+                            <input type="text" formControlName="lastName" class="form-control" [(ngModel)]="customers.LastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-5">
+                        <label>מייל</label>
+                        <input type="text" formControlName="email" class="form-control" [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-5">
+                            <label>טלפון מס 1</label>
+                            <input type="text" formControlName="telephon1" class="form-control" [(ngModel)]="customers.TelephonNo1" [ngClass]="{ 'is-invalid': submitted && f.telephon1.errors }" />
+                            <div *ngIf="submitted && f.telephon1.errors" class="invalid-feedback">
+                                <div *ngIf="f.telephon1.errors.required">Telephon1 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>טלפון מספר 2</label>
+                            <input type="text" formControlName="telephon2" class="form-control" [(ngModel)]="customers.TelephonNo2" [ngClass]="{ 'is-invalid': submitted && f.telephon2.errors }" />
+                            <div *ngIf="submitted && f.telephon2.errors" class="invalid-feedback">
+                                <div *ngIf="f.telephon2.errors.required">Telephon2 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-5">
+                            <label>סיסמה</label>
+                            <input type="password" formControlName="password" class="form-control" [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </button>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>אימות סיסמה</label>
+                            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+            <button mat-button matStepperPrevious>הקודם</button>
+            <button mat-button matStepperNext (click)="submitted=true" type="submit">הבא</button>
+        </div>
+
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>סיום</ng-template>
+        <p style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
+            תהליך ההרשמה נגמר בהצלחה!!
+
+        </p>
+        <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;">
+            <button mat-button (click)="openDialog()">תנאי השימוש</button>
+            <mat-checkbox [(ngModel)]="disabled" class="example-margin" (change)="create()">
+                מאשר תנאי שימוש
+            </mat-checkbox>
+            <br><br>
+            <button mat-button matStepperPrevious>הקודם</button>
+            <button mat-button (click)="AddCustomer()">סיום</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

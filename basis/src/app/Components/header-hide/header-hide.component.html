@@ -1,0 +1,16 @@
+<div style="height: 100vh;">
+    <!-- {{customerSer.CurrentCustomer.FirstName||""}} {{customerSer.CurrentCustomer.LastName||""}} -->
+    <mat-toolbar [ngStyle]="{'height':'50px'}" class="fixed-header" style="direction: ltr;">
+        <br><br>
+        <h1 class="ccc">easyRent</h1>
+        <button mat-button class="cnt" (click)="logOut()" style="color:whitesmoke">התנתק
+            <mat-icon style="color:whitesmoke">account_circle</mat-icon>
+            </button>
+        <a (click)="goTo('/viewComp')" mat-button>
+            <mat-icon style="color:whitesmoke">home</mat-icon>
+        </a>
+        <a href="tel:+*2531" style="color: #FF6600;">2531*</a>
+        <mat-icon style="color:whitesmoke">local_phone
+        </mat-icon>
+    </mat-toolbar>
+</div>

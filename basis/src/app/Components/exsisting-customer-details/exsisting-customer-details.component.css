@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+.cell1 {
+    text-align: right;
+}
+
+.mat-cell {
+    text-align: right;
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+.make-gold {
+    background-color: #d6dbdf
+}

@@ -1,0 +1,59 @@
+.size {
+    background-size: 50;
+}
+
+.example-icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.fixed-header {
+    position: fixed;
+    z-index: 999;
+    background-color: #333333;
+}
+
+mat-toolbar[color="primary"] {
+    top: 100px;
+    position: fixed;
+    height: 300px;
+}
+
+
+/* צצצצצצצצצ */
+
+.fixed-header {
+    position: fixed;
+    z-index: 999;
+    height: 50px;
+}
+
+#frugalmap {
+    height: 300px;
+    width: 100%;
+    top: 50px;
+    position: relative;
+}
+
+.mat-elevation-z5 {
+    position: relative;
+}
+
+.sticky {
+    position: fixed;
+    top: 50px;
+}
+
+.ccc {
+    color: whitesmoke;
+    font-family: unset;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.ccc1 {
+    color: whitesmoke;
+}

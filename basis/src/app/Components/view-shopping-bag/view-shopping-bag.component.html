@@ -1,0 +1,117 @@
+<router-outlet></router-outlet>
+<div class="">
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="CompanyName">
+            <th mat-header-cell *matHeaderCellDef> CompanyName </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.CompanyName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.Type}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Prossess">
+            <th mat-header-cell *matHeaderCellDef> Prossess </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.Prossess}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Memory">
+            <th mat-header-cell *matHeaderCellDef> Memory </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.Memory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="HardDisk">
+            <th mat-header-cell *matHeaderCellDef> HardDisk </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.HardDisk}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ScreenSize">
+            <th mat-header-cell *matHeaderCellDef> ScreenSize </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.ScreenSize}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Programslist">
+            <th mat-header-cell *matHeaderCellDef> Programslist </th>
+            <!-- 
+            <td mat-cell *matCellDef="let element"> {{element.Programslist}} </td> -->
+
+            <td mat-cell *matCellDef="let element">
+                {{element.ProgramName}}
+
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="RemoveItem">
+            <th mat-header-cell *matHeaderCellDef> RemoveItem </th>
+
+            <td mat-cell *matCellDef="let element"> <button mat-button><mat-icon>delete</mat-icon></button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<h2> Shopping Bag</h2>
+<!-- <form style="text-align: center;">
+    <table matSort>
+        <tr>
+            <th mat-sort-header="id">Id </th>
+            <th mat-sort-header="LepTopId">LepTopId </th>
+            <th mat-sort-header="VersiCompanyIdonName">CompanyId </th>
+            <th mat-sort-header="CompanyName">CompanyName </th>
+            <th mat-sort-header="Type">Type </th>
+            <th mat-sort-header="Prossess">Prossess </th>
+            <th mat-sort-header="Memory">Memory </th>
+            <th mat-sort-header="HardDisk">HardDisk </th>
+            <th mat-sort-header="ScreenSize">ScreenSize </th>
+            <th mat-sort-header="Img">Img </th>
+            <th mat-sort-header="Programslist">Programslist </th>
+        </tr>
+        <tr *ngFor="let s of shoppingBag">
+            <td>{{s.Id}}</td>
+            <td>{{s.LepTopId}}</td>
+            <td>{{s.CompanyId}}</td>
+            <td>{{s.CompanyName}}</td>
+            <td>{{s.Type}}</td>
+            <td>{{s.Prossess}}</td>
+            <td>{{s.Memory}}</td>
+            <td>{{s.HardDisk}}</td>
+            <td>{{s.ScreenSize}}</td>
+            <td>
+                <label *ngFor="let p of s.Programslist ; let i = index">
+            {{p.ProgramName}}
+            <span *ngIf="i<s.Programslist.length-1">,</span>
+        </label>
+            </td>
+            <td><img class="d-block w-50" width="100" height="200" src={{s.ComputerImg}} alt="Third slide"> </td>
+            <td>
+                <a href="#" mat-button>
+                    <mat-icon>remove_shopping_cart</mat-icon>
+                </a>
+
+        </tr>
+    </table> -->
+<!-- </form> -->
+<!-- <label *ngFor="let element of element.Programslist ; let i = index"> -->
+
+<button class="btn btn-primary mr-1" routerLinkActive="mat-raised-button" (click)="onCange(customers.Id)">To order</button>

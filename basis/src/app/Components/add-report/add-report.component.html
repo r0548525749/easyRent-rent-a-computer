@@ -1,0 +1,49 @@
+<router-outlet></router-outlet>
+<!-- Default form contact -->
+<div class="container" style="text-align: right;">
+
+    <form class="text-center border border-light p-5" action="#!" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+
+        <p class="h4 mb-4"> הוספת תלונה</p>
+
+        <!-- Name -->
+        <input type="text" formControlName="firstName" class="form-control" id="defaultContactFormName" placeholder="שם פרטי"><br>
+
+        <input type="text" formControlName="lastName" id="defaultContactFormName" class="form-control mb-4" placeholder="שם משפחה">
+
+        <!-- Email -->
+        <input type="email" formControlName="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="מייל">
+        <!-- Password -->
+        <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control" placeholder="מספר לקוח" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <br><br>
+        <!-- Phone number -->
+        <input type="text" formControlName="telephon1" id="defaultRegisterPhonePassword" class="form-control" placeholder="מספר טלפון" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+
+        <!-- Subject -->
+        <label>נושא</label>
+        <select class="browser-default custom-select mb-4">
+        <option value="" disabled> תבחר/י את אחת האפשרויות</option>
+        <option value="1" selected></option>
+        <option value="2" selected>דווח על תקלה</option>
+        <option value="3">דווח על באג</option>
+        <option value="4">דווח על שבר</option>
+        <option value="5">דווח על תיקון</option>
+    </select>
+
+        <!-- Message -->
+        <div class="form-group">
+            <textarea class="form-control rounded-0" formControlName="complain" id="exampleFormControlTextarea2" rows="3" placeholder="פרטי התלונה"></textarea>
+        </div>
+
+        <!-- Copy -->
+        <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+            <label class="custom-control-label" for="defaultContactFormCopy">שלח לי עותק של הודעה זו</label>
+        </div>
+
+        <!-- Send button -->
+        <button class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" type="submit">שלח</button>
+
+    </form>
+    <!-- Default form contact -->
+</div>

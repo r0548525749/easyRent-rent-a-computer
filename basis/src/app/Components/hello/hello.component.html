@@ -1,0 +1,14 @@
+<p>בחתימתך מטה הינך מאשר תקנון ותנאי שימוש</p>
+<div class="card m-3" style="direction: ltr;">
+    <b>:החתימה שלך</b>
+    <signature-pad #sigPad></signature-pad>
+    <pre>
+  <!-- {{sigPad.value | json}} -->
+</pre>
+    <button (click)="sigPad.clear()">נקה</button>
+    <button mat-button matSuffix style="background-color: aqua;" (click)="onCloase()" aria-label="Clear">לאישור</button>
+</div>
+<!-- <signature-pad [options]="signaturePadOptions" id="signatureCanvas"></signature-pad>
+<pre>
+
+</pre> -->

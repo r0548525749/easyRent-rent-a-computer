@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* @import "../node_modules/angular-signature-pad/styles"; */
+
+@import '~ngx-toastr/toastr';
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+}
+
+.basic-container {
+    padding: 30px;
+}
+
+.version-info {
+    font-size: 8pt;
+    float: right;
+    margin: 8px;
+}
+
+
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+
+/* @import url("bootstrap.min.css"); */
+
+
+/* https://stackoverflow.com/a/48689004/9263761 */
+
+
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dateClaas1 {
+    background-color: red;
+}
+
+.dateClaas2 {
+    background-color: orange;
+    ;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -1,0 +1,214 @@
+<!-- 
+  <input #pass matInput [type]="hide ? 'password' : 'text'"><br><br>
+    <input type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide" > 
+
+<div class="example-container">
+
+  <label>Enter your password</label> <br><br>
+  <input matInput [type]="hide ? 'password' : 'text'">
+  <input type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+    [attr.aria-pressed]="hide">
+</div>
+ -->
+<!-- <div>
+    <a [routerLink]="['/existing']"> לקוח קיים</a>
+</div> -->
+
+<!-- <router-outlet></router-outlet>
+
+<div class="card m-3" style="direction: ltr;">
+    <h3 class="card-header">RegisterCustomer</h3>
+    <div class="card-body">
+        <form [formGroup]="registerForm" *ngIf="registerForm,customers" (ngSubmit)="onSubmit(customers.Id)">
+            <div class=" ">
+                <div class="  col">
+                    <div class="  col-5">
+                        <label>User Name</label>
+                        <input type="text" formControlName="userName" class=" " [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                            <div *ngIf="f.userName.errors.required">User Name is required</div>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        <div class="  col">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class=" " [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1" [disabled]="!registerForm.valid" routerLinkActive="mat-raised-button" (click)="onCange(customers.Id)">Register</button>
+                        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+<!-- <form class="example-form">
+
+</form>
+<form class="col-sm-12 " *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class=" ">
+        <div class=" ">
+            <label>Email</label>
+            <input type="text" formControlName="email" class=" " [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class=" ">
+            <mat-form-field class="example-full-width">
+                <input matInput type="password" formControlName="password" class=" " [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+
+                </div>
+            </mat-form-field>
+        </div>
+ -->
+
+<!-- <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input matInput type="email" placeholder="Email" formControlName="userName" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="nameControl.hasError('email') && !nameControl.hasError('required')">
+            Please enter a valid email address
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" formControlName="password" #password1>
+    </mat-form-field>
+    <td>
+        <button (click)="onCange(password1.value)">vvvvvv</button>
+
+</form>
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<form action="/action_page.php" method="post" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="example-container">
+            <label for="uname"><b>Username</b></label>
+            <input placeholder="שם משתמש" type="text" #name formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"><br>
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">User Name is required</div>
+            </div>
+            <label for="psw"><b>Password</b></label>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [formControl]="registerForm">
+                <mat-error *ngIf="registerForm.hasError('email') && !registerForm.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="registerForm.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+           תסתכלו על ה#password!-->
+<!-- <input type="password" matInput placeholder="הכנס סיסמא" #password1 [type]="hide ? 'password1' : 'password'" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password1'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button><br><br>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">התחברות</button>
+            </div>
+            <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+
+
+        </div>
+    </div>
+</form> -->
+
+<!-- חדש -->
+<!-- <div class="card m-3" style="direction: ltr;">
+    <ng-template matStepLabel>personal details</ng-template>
+    <h3 class="card-header">New Customer</h3>
+    <div class="card-body"> -->
+<!-- <div class="form-row">
+                <div class="form-group col-5">
+                    <label>First Name</label>
+                    <input type="password" formControlName="password" class="form-control" [(ngModel)]="customers.FirstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+            </div> -->
+<!-- </form> -->
+<!-- </div>
+</div> -->
+<br><br>
+<!-- Default form row -->
+
+<form class="col-sm-12 form-content" *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="font-family: monospace;font-weight: bold;">
+    <div class="container" style="text-align: right;">
+        <!-- Grd row -->
+        <div class="form-row">
+            <!-- Grid column -->
+            <div class="col">
+                <!-- Default input -->
+                <div class="form-group">
+                    <label style="font-weight: bold;color: grey;">שם משתמש</label>
+                    <input type="text" placeholder="מייל" formControlName="email" #email class="form-control" [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid column -->
+            <div class="col">
+                <div class="form-row">
+                    <div class="input-group mb-3">
+                        <div class="form-group col">
+                            <label style="font-weight: bold;color: grey;">סיסמה</label>
+                            <!-- <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><mat-icon matSuffix style="color:#333333;" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                                </span></div> -->
+                            <input type="password" placeholder="סיסמה" formControlName="password" class="form-control" #password [type]="hide ? 'password' : 'text'" [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <br>
+            <div class="form-group col">
+                <!-- <button type="submit" class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" ">לאישור</button> <br><br> -->
+                <button class="btn btn-primary mr-1" style="background-color: #FF6600;border-color: #333333;height:1cm;"> התחבר
+            </button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a routerLink="/register" style="color: #FF6600;"> אין לך עדין חשבון?</a>
+    </div>
+</form>
+<br><br>

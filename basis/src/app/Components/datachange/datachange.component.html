@@ -1,0 +1,157 @@
+<div class="card m-3" style="direction: ltr;">
+    <h3 class="card-header" style="background-color:#FF6600;color: aliceblue;font-family: cursive;font-size: x-large;">
+        <button mat-button matSuffix mat-icon-button (click)="onCloase()" aria-label="Clear"><mat-icon>clear</mat-icon></button>
+        <div style="text-align: right;"> {{data.from}} מחשב</div>
+    </h3>
+
+    <div class="card-body">
+        <div class="example-full-width1">
+            <form class="col-sm-12 form-content" (ngSubmit)="onSubmit()">
+                <!-- <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Name</label>
+                    <input type="text" formControlName="softwerName" class="form-control" [(ngModel)]="softwers.Name" [ngClass]="{ 'is-invalid': submitted && f.softwerName.errors }" />
+                    <div *ngIf="submitted && f.softwerName.errors" class="invalid-feedback">
+                        <div *ngIf="f.softwerName.errors.required">Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Comment</label>
+                    <input type="text" formControlName="softwerComment" class="form-control" [(ngModel)]="softwers.Comment" [ngClass]="{ 'is-invalid': submitted && f.softwerComment.errors }" />
+                    <div *ngIf="submitted && f.softwerComment.errors" class="invalid-feedback">
+                        <div *ngIf="f.softwerComment.errors.required">Comment is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-5">
+                <label>Softwer Id</label>
+                <input type="text" formControlName="Softwerid" class="form-control" [(ngModel)]="softwers.SoftwareId" [ngClass]="{ 'is-invalid': submitted && f.Softwerid.errors }" />
+                <div *ngIf="submitted && f.Softwerid.errors" class="invalid-feedback">
+                    <div *ngIf="f.Softwerid.errors.required">SoftwerId is required</div>
+                </div>
+            </div>
+            <div class="form-group col-5">
+                <label>Softwer Version</label>
+                <input type="text" formControlName="softwerVersion" class="form-control" [(ngModel)]="softwers.VersionKod" [ngClass]="{ 'is-invalid': submitted && f.softwerVersion.errors }" />
+                <div *ngIf="submitted && f.softwerVersion.errors" class="invalid-feedback">
+                    <div *ngIf="f.softwerVersion.errors.required">softwerVersion is required</div>
+                </div>
+            </div>
+
+            <div class="form-group col-5">
+                <label>Softwer pic</label>
+                <input type="text" formControlName="softwerPic" class="form-control" [(ngModel)]="softwers.Img" [ngClass]="{ 'is-invalid': submitted && f.softwerPic.errors }" />
+                <div *ngIf="submitted && f.softwerPic.errors" class="invalid-feedback">
+                    <div *ngIf="f.softwerPic.errors.required">softwerPic is required</div>
+                </div>
+            </div>
+            {{parentData}}
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Submite</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Clear</button>
+                <div class="col-sm-6">
+                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                </div>
+
+            </div> -->
+
+                <!-- name -->
+                <div class="form-row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>שם מחשב</mat-label>
+                        <input type="text" name="name" matInput [(ngModel)]="this.computer.ProudactName">
+                    </mat-form-field>
+                </div>
+                <!-- descib -->
+                <div class="form-row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>תאור</mat-label>
+
+                        <input type="textarea" name="descib" matInput [(ngModel)]="this.computer.Discription">
+                    </mat-form-field>
+                </div>
+                <!-- companyName -->
+                <div class="form-row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>בחירת חברה</mat-label>
+                        <mat-select [(ngModel)]="this.computerDetails.CompanyId" (change)="addCompany()" name="selectCompany">
+
+                            <mat-option [value]="null" disabled selected="true"> בחר
+                            </mat-option>
+                            <mat-option *ngFor="let l of companiesList" [value]="l.Id">
+                                {{l.Name}}
+                            </mat-option>
+                            <mat-option [value]="0" (click)="addCompany()">+</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- type -->
+                <div class="form-row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>בחירת סוג</mat-label>
+                        <mat-select [(ngModel)]="this.computer.ProudactKindId" (change)="addType()" name="selectType">
+                            <div style="text-align: left;">
+                                <mat-option [value]="null" disabled selected="true"> בחר
+                                </mat-option>
+                            </div>
+                            <mat-option *ngFor="let l of typesList" [value]="l.Id">
+                                {{l.Name}}
+                            </mat-option>
+                            <mat-option [value]="0" (click)="addType()">+</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- prossess -->
+                <div class="form-row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>מעבד</mat-label>
+                        <input type="text" name="prossess" matInput [(ngModel)]="this.computerDetails.Process">
+                    </mat-form-field>
+                </div>
+                <!-- HardDisk -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>דיסק קשיח</mat-label>
+
+                    <input type="text" name="HardDisk" matInput [(ngModel)]="this.computerDetails.HardDisk">
+                </mat-form-field>
+                <!-- screenSize -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>גודל מסך</mat-label>
+                    <input type="text" name="screenSize" matInput [(ngModel)]="this.computerDetails.ScreenSize">
+                </mat-form-field>
+                <!-- memory -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>זיכרון</mat-label>
+
+                    <input type="text" matInput name="memory" [(ngModel)]="this.computerDetails.Memory">
+                </mat-form-field>
+
+                <div class="form-group">
+                    <img src="{{this.computerDetails.Picture}}">
+                    <label for="pic" class="control-lable">תמונה:</label><br>
+                    <input type="file" name="pic" id="file-input" class="form-control" #Image [ngModel]="this.computerDetails.Picture" (change)="handleFileInput($event.target.files)" placeholder="בחר תמונה" />
+                </div>
+
+                <mat-form-field>
+                    <mat-label>תוכנות</mat-label>
+                    <mat-select [formControl]="toppings" multiple (selectionChange)="filterByProgramName($event.value)">
+                        <mat-select-trigger>
+                            {{toppings.value ? toppings.value[0] : ''}}
+                            <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                          (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let topping of programList" [value]="topping">
+                            <img class="img-fluid" width="20px" height="20px" type="button" src={{topping.img}} alt="Sample image" class="magazine-section my-2">‏ {{topping.Name}} ver: {{topping.Id}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <p>התוכנה שנבחרה :</p>
+                <p *ngFor="let item of toppings.value"> {{item.Name}} </p>
+                <br>
+                <button class="btn btn-primary mr-1" style="background-color: #FF6600" (click)="onCloase()">אישור</button>
+            </form>
+        </div>
+    </div>
+</div>

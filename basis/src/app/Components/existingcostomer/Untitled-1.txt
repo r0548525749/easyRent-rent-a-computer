@@ -1,0 +1,12 @@
+<?php
+$connect = pg_connect('localhost', 'postgres');
+$results = pg_query('select sum(points), $connect);
+echo $results;
+
+
+?>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+

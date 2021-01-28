@@ -1,0 +1,71 @@
+<!-- Extended default form grid -->
+<br><br>
+<div class="container" style="text-align: right;">
+
+    <form [formGroup]="borureForm">
+        <!-- Grid row -->
+        <div class="form-row">
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם פרטי</label>
+                <input type="text" formControlName="firstName" id="defaultContactFormName" class="form-control" placeholder="שם פרטי">
+            </div>
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם משפחה</label>
+                <input type="text" formControlName="lastName" id="defaultContactFormName" class="form-control" placeholder="שם משפחה">
+            </div>
+        </div>
+        <div class="form-row">
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם משתמש</label>
+                <input type="text" formControlName="userName" id="defaultContactFormName" class="form-control" placeholder="שם משתמש">
+            </div>
+            <!-- Default input -->
+            <div class="form-group col-md-6">
+                <label for="defaultContactFormName">שם הזמנה</label>
+                <input type="text" formControlName="numOrder" id="defaultContactFormName" class="form-control" placeholder="מספר הזמנה">
+            </div>
+
+        </div>
+        <!-- Grid row -->
+        <!-- <div class="md-form md-outline">
+            <label for="default-picker">שעת השאלה</label>
+            <input type="time" formControlName="time" id="default-picker" class="form-control" [(ngModel)]="time" placeholder="שעת השאלה">
+        </div> -->
+        <!-- <mat-form-field class="example-full-width">
+            <input mat-timepicker matInput type="time"  placeholder="שעת " value="10:55 AM">
+        </mat-form-field> -->
+        <br><br>
+        <!-- Message -->
+        <div class="form-group">
+            <textarea class="form-control rounded-0" formControlName="complain" id="exampleFormControlTextarea2" rows="3" placeholder="האם יש פגם במוצר שצריך לדווח מראש? נא לפרט הכל כדי למנוע אי נעימות."></textarea>
+        </div>
+        <br><br>
+        <button mat-button (click)="openDialog()">תנאי השימוש</button>
+        <mat-checkbox [(ngModel)]="disabled" class="example-margin" (change)="create()">
+            מאשר תנאי שימוש
+        </mat-checkbox>
+        <br><br>
+        <!-- Grid row -->
+        <button type="submit" class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" (click)="CheackOrderByIdAndTime()">לאישור</button> <br><br>
+        <div>
+            <a routerLink="/register" style="color: #FF6600;"> אין לך הזמנה?</a>
+        </div>
+    </form>
+    <!-- Extended default form grid -->
+</div>
+<br><br>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="ttt">
+    <strong>Holy guacamole!</strong> השאלתך נקלטה במערכת.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="t">
+    <strong>Holy guacamole!</strong> מצטערים, אין אפשרות להשאיל.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>

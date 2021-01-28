@@ -1,0 +1,65 @@
+<div style="height: 100vh;">
+    <!-- {{customerSer.CurrentCustomer.FirstName||""}} {{customerSer.CurrentCustomer.LastName||""}} -->
+    <mat-toolbar [ngStyle]="{'height':'50px'}" class="fixed-header">
+        <div class="container" style="text-align: right;" class="ccc">
+            <a mat-button routerLinkActive="mat-raised-button" routerLink="/manager" *ngIf="isManager">מנהל</a>
+            <a mat-button routerLinkActive="mat-raised-button" routerLink="/Secretary" *ngIf="isSecretery"> מזכיר</a>
+            <a mat-button routerLinkActive="mat-raised-button" routerLink="/addReport">הגשת תלונה</a>
+            <a mat-button routerLinkActive="mat-raised-button" routerLink="/MainRule">צפייה בסקרים</a>
+            <a mat-button routerLinkActive="mat-raised-button" routerLink="/existingCustomerDetails">לאזור האישי </a>
+            <a mat-button routerLinkActive="m83ק777at-raised-button" routerLink="/contact"> צור קשר </a>
+        </div><br><br>
+        <span class="example-spacer"></span>
+        <div fxShow="true" fxHide.lt-md="true" class="ccc1">
+            <a routerLink="" mat-button>
+                <mat-icon>language</mat-icon>
+            </a>
+            <a mat-button [routerLink]="['/question']">
+                <mat-icon>more_vert
+                </mat-icon>
+            </a>
+            <!-- <a mat-button [routerLink]="['/contact']">
+                <mat-icon>history_edu
+                </mat-icon>
+            </a> -->
+            <!-- <a href='callto:1300111222'>Click to call</a>
+            <a routerLink="" mat-button>
+                <mat-icon>
+                    star_rate</mat-icon>
+            </a> -->
+            <!-- 
+            <div class="phone-info phone-visiblity">
+                <label>התקשרו עכשיו:</label>
+                <a class="phone" href="tel:03-7773111">
+                    <i class="icon-calling"></i>
+                    <span>03-7773111</span>
+                </a>
+            </div>‏ -->
+
+            <a href="tel:+*2531" style="color: #FF6600;">2531*</a>
+            <mat-icon>local_phone
+            </mat-icon>
+            <a routerLink="" mat-button>
+                <mat-icon>thumb_up_alt</mat-icon>
+            </a>
+            <a (click)="goTo('/viewComp')" mat-button>
+                <mat-icon>home</mat-icon>
+            </a>
+            <button mat-button class="cnt" (click)="logOut()">התנתק
+    <mat-icon>account_circle</mat-icon>
+    </button>
+        </div>
+        <h1 class="ccc">easyRent</h1>‏
+        <!-- <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg> -->
+    </mat-toolbar>
+    <button>vvvvvvvvvv</button>
+</div>
+<!-- <mat-toolbar color="primary" class="fixed-header">
+</mat-toolbar>
+
+<div class="custom-popup" id="frugalmap"></div>
+
+<mat-toolbar id="secondToolbar" color="warn" [ngClass]="{'mat-elevation-z5' : true, 'sticky' : isSticky}">
+</mat-toolbar> -->

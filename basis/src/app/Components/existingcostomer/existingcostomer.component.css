@@ -1,0 +1,90 @@
+/* ניסוי */
+
+.ng-invalid.ng-touched.ng-dirty:not(form) {
+    border: 1px solid red;
+}
+
+.is-invalid {
+    border: 2px solid red;
+}
+
+.fontback {
+    height: 50px;
+    width: 300px;
+    background-color: salmon;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: unset;
+    color: teal;
+    text-align: center;
+}
+
+.swal-modal {
+    background-color: rgba(63, 255, 106, 0.69);
+    border: 3px solid white;
+}
+
+.lbl {
+    display: inline-block;
+    border: solid salmon;
+    padding: 10px;
+    margin: 20px;
+}
+
+.fontform {
+    background-color: wheat;
+    font-family: cursive;
+    font-style: initial;
+    color: lightcoral;
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldfont {
+    width: 400px;
+    border-color: palevioletred;
+    color: lightcoral;
+    font-family: cursive;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.back {
+    background-color: rgb(34, 115, 182);
+    border: rgb(34, 115, 182);
+    border-radius: 10%;
+}
+
+.myButton {
+    box-shadow: inset 0px 1px 3px 0px rgb(34, 115, 182);
+    background: linear-gradient(to bottom, rgb(34, 115, 182) 5%, rgb(34, 115, 182) 100%);
+    background-color: rgb(34, 115, 182);
+    border-radius: 5px;
+    border: 1px solid rgb(34, 115, 182);
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Georgia;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 11px 23px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px rgb(34, 115, 182);
+}
+
+.myButton:hover {
+    background: linear-gradient(to bottom, rgb(34, 115, 182) 5%, rgb(34, 115, 182) 100%);
+    background-color: rgb(34, 115, 182);
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+}
