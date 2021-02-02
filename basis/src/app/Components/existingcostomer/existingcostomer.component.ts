@@ -102,7 +102,7 @@ export class ExistingcostomerComponent implements OnInit {
       myData => { console.log("add sucssesful");this.customers = myData;
       console.log("lolgin my data", myData)
       this.customerSer.CurrentCustomer=myData;
-      this.router.navigate(['/viewComp']);
+      this.router.navigate(['/homePage']);
     },
       myErr => { console.log(myErr.message); 
         alert("שם משתתמש וסיסמה לא נכונים.");

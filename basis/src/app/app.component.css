@@ -49,3 +49,29 @@
 <button><img class="d-block w-50" width="220" height="230" src= "https://www.lunapark.co.il/data/images/1956_bbb0776c1781ae0a07422223da394901.jpg"  alt="Third slide"></button>
 <button  width="220" height="230"><h1 style="color: red;">הוראות הגעה ללונה פארק</h1>
     <p  style="color: red;"> קרא עוד </p> */
+
+.logoDiv {
+    border-bottom: solid;
+    border-color: #FF6600;
+    border-width: 4px;
+    /* margin-top: 50px; */
+    margin-bottom: 6%;
+    width: 100%;
+    height: 30%;
+}
+
+.logoImgDiv {
+    margin-top: 5%;
+    width: fit-content;
+    margin-right: 75%;
+    margin-bottom: 12%;
+}
+
+img {
+    width: 200px;
+}
+
+.titleImgDiv {
+    width: fit-content;
+    margin-right: 39%;
+}

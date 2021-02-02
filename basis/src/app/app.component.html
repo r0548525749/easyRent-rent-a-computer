@@ -1,12 +1,12 @@
 <!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
 
-<div *ngIf="connected" class="header">
+<div *ngIf="connected">
     <app-header>
     </app-header>
     <!-- <h2 app.component.html "easyJet Logo" width="103" height="25" title="" style=""></h2> -->
 </div>
 
-<div *ngIf="!connected" class="header">
+<div *ngIf="!connected">
     <!-- קומפוננטה חדשה -->
     <app-header-hide></app-header-hide>
 
@@ -15,7 +15,15 @@
 </div>
 <!-- <header>ברוכים הבאים לאתר השכרת מחשבים</header>
     <br><br><br><br><br><br><br><br><br><br><br><br> -->
-
+<div class="logoDiv">
+    <div class="titleImgDiv">
+        <h3>EASYRENt</h3>
+    </div>
+    <div class="logoImgDiv">
+        <img [src]="'../assets/pic/easyrent.png'" />
+    </div>
+</div>
+<!-- <app-home></app-home> -->
 <div class="main">
     <!-- <div class="menu">
         <app-menu></app-menu>

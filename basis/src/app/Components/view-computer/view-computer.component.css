@@ -194,3 +194,7 @@ mat-drawer-content {
     align-content: center;
     align-items: center;
 }
+
+img {
+    width: 300px;
+}

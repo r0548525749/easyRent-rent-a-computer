@@ -16,7 +16,7 @@ import { MenuComponent } from './Components/menu/menu.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
@@ -49,17 +49,17 @@ import { MgxCircularProgressModule } from 'mgx-circular-progress-bar';
 // import { HelipopperModule } from '@ngneat/helipopper';
 import { NgPaymentCardModule } from 'ng-payment-card';
 import { PopupDateComponent } from './Components/popup-date/popup-date.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {} from '@angular/material'
-import {MatNativeDateModule} from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { } from '@angular/material'
+import { MatNativeDateModule } from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatTableModule} from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
 import { CreateComanyComponent } from './Components/create-company/create-company.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ContentDialogComponent } from './content-dialog/content-dialog.component';
-import {CardModule} from 'ngx-card/ngx-card';
+import { CardModule } from 'ngx-card/ngx-card';
 import { DateAndTimePopupComponent } from './Components/date-and-time-popup/date-and-time-popup.component';
 import { ReportComponent } from './Components/report/report.component';
 import { ChartsModule, ThemeService } from 'ng2-charts';
@@ -73,19 +73,23 @@ import { RuleComponent } from './Components/rule/rule.component';
 import { MainRuleComponent } from './Components/main-rule/main-rule.component';
 import { ProgramChangeComponent } from './Components/program-change/program-change.component';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { DateandtimepopuppComponent } from './dateandtimepopupp/dateandtimepopupp.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: "existing", pathMatch: "full"},
+  { path: '', redirectTo: "existing", pathMatch: "full" },
   { path: "viewComp", component: ViewComputerComponent },
+  { path: "homePage", component: HomeComponent },
   { path: "toexsist", component: ExistingPageComponent },
-  { path: "existing", component: ExistingcostomerComponent,
-  children: [
-    { path: "existingCustomerDetails", component: ExsistingCustomerDetailsComponent },
-    { path: "existing", component: ExistingcostomerComponent },
-  ]
-},
+  {
+    path: "existing", component: ExistingcostomerComponent,
+    children: [
+      { path: "existingCustomerDetails", component: ExsistingCustomerDetailsComponent },
+      { path: "existing", component: ExistingcostomerComponent },
+    ]
+  },
   { path: "register", component: RegisterComponent },
   { path: "goback", component: ViewComputerComponent },
   { path: "try", component: TryingComponent },
@@ -150,27 +154,29 @@ const appRoutes: Routes = [
     HeaderHideComponent,
     RuleComponent,
     MainRuleComponent,
-    ProgramChangeComponent  ],
+    ProgramChangeComponent,
+    DateandtimepopuppComponent,
+    HomeComponent],
   imports: [
-    ToastrModule.forRoot() ,
+    ToastrModule.forRoot(),
     BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatFormFieldModule,
     MatSelectModule, MatInputModule, MatChipsModule, MatStepperModule, MatSortModule,
     TextFieldModule, ReactiveFormsModule, MatDialogModule, MatPaginatorModule, MatCheckboxModule,
     MatRadioModule, MatTabsModule, MatToolbarModule, MatTreeModule, SignaturePadModule,
-    MgxCircularProgressModule, NgPaymentCardModule,MatDatepickerModule,MatNativeDateModule,
-    MatCardModule,MatButtonToggleModule,MatTableModule,MatExpansionModule,CardModule,ChartsModule,
-    MatSliderModule,MatProgressSpinnerModule,MatSidenavModule
+    MgxCircularProgressModule, NgPaymentCardModule, MatDatepickerModule, MatNativeDateModule,
+    MatCardModule, MatButtonToggleModule, MatTableModule, MatExpansionModule, CardModule, ChartsModule,
+    MatSliderModule, MatProgressSpinnerModule, MatSidenavModule
     // AngularSignaturePadModule.forRoot()
   ],
 
 
   // NbChatModule.forRoot({ messageGoogleMapKey: 'MAP_KEY' }),
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },ThemeService
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }, ThemeService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DatachangeComponent, HelloComponent,DateAndTimePopupComponent,CreateComanyComponent,ContentDialogComponent],
+  entryComponents: [DatachangeComponent, HelloComponent, DateAndTimePopupComponent, CreateComanyComponent, ContentDialogComponent],
 })
 export class AppModule { }
 

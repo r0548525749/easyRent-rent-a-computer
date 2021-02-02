@@ -8,7 +8,7 @@
         <mat-drawer #drawer class="example-sidenav" mode="side" style=" background-color: rgb(232, 232, 235);">
             <!-- style="font-family: monospace;font-weight: bold;" -->
             <!-- הצגת כל הסינונים -->
-            <div style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">
+            <div style="font-family: Calibri;color: grey;font-weight: bold;text-align: right ; ">
                 <div><br><br>
                     <form style="text-align: center;">
                         <div>סמן את סוג המחשב שברצונך לבחור: </div>
@@ -100,50 +100,54 @@
         <!-- <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button routerLink="/viewBag"><i class="material-icons">&#xE147;</i> <span>view Shopping Bag</span></button> -->
         <br><br>
         <!-- הצגת הטבלה -->
-        <form style="text-align: center;" *ngIf="shwoButton1" style="font-family: monospace;">
-            <table matSort style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
-                <!-- <div id="borderDemo">Editable text -->
-                <tr style="font-weight: bold;">
-                    <th>קוד מחשב </th>
-                    <!-- <th>LepTopId </th>
-                <th>CompanyId </th> -->
-                    <th>חברה </th>
-                    <th>סוג </th>
-                    <th>מעבד </th>
-                    <th>זיכרון </th>
-                    <th>דיסק קשיח </th>
-                    <th>גודל מסך </th>
-                    <th>תוכנות </th>
-                    <th>תמונה </th>
-                </tr>
-                <!-- פלטור הנתונים של הטבלה כל פעם שבוחרים על סינון למעלה -->
-                <tr *ngFor="let s of computerWithProgramListFilter | try:selectedMemory:'selectedMemory'|try:selectedType:'selectedType' |
-             try:selectedProcess:'selectedProcess'| try:selectedCompany:'selectedCompany' | try:selectedHardDisk:'selectedHardDisk'
-             | try:selectedScreanSize:'selectedScreanSize'">
-                    <td>{{s.Id}}</td>
-                    <!-- <td>{{s.LepTopId}}</td>
-                <td>{{s.CompanyId}}</td> -->
-                    <td>{{s.CompanyName}}</td>
-                    <td>{{s.Type}}</td>
-                    <td>{{s.Prossess}}</td>
-                    <td>{{s.Memory}}</td>
-                    <td>{{s.HardDisk}}</td>
-                    <td>{{s.ScreenSize}}</td>
-                    <td>
-                        <!-- הצגה של התוכנות עם פסיקים -->
-                        <label *ngFor="let p of s.Programslist ; let i = index">
-                        {{p.ProgramName}}
-                        <span *ngIf="i<s.Programslist.length-1">,</span>
-                    </label>
-                    </td>
-                    <td><img class="d-block w-50" width="50" height="200" src={{s.ComputerImg}} alt="Third slide"> </td>
-                    <td>
-                        <td style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
-                            <mat-calendar [dateClass]="dateClass(s)" (selectedChange)="getDay($event)" (click)="create(s)"></mat-calendar>
-                        </td>
-                </tr>
-            </table><br>
-        </form>
+
+        <div class="container" style="text-align: center; ">
+            <table class="table" dir="rtl">
+                <thead>
+                    <tr>
+                        <th>קוד מחשב </th>
+                        <th>חברה </th>
+                        <th>סוג </th>
+                        <th>מעבד </th>
+                        <th>זיכרון </th>
+                        <th>דיסק קשיח </th>
+                        <th>גודל מסך </th>
+                        <th>תוכנות </th>
+                        <th style="width: 20%;">תמונה </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <tr *ngFor="let s of computerWithProgramListFilter | try:selectedMemory:'selectedMemory'|try:selectedType:'selectedType' |
+                        try:selectedProcess:'selectedProcess'| try:selectedCompany:'selectedCompany' | try:selectedHardDisk:'selectedHardDisk'
+                        | try:selectedScreanSize:'selectedScreanSize'">
+                            <td>{{s.Id}}</td>
+                            <!-- <td>{{s.LepTopId}}</td>
+                           <td>{{s.CompanyId}}</td> -->
+                            <td>{{s.CompanyName}}</td>
+                            <td>{{s.Type}}</td>
+                            <td>{{s.Prossess}}</td>
+                            <td>{{s.Memory}}</td>
+                            <td>{{s.HardDisk}}</td>
+                            <td>{{s.ScreenSize}}</td>
+                            <td>
+                                <!-- הצגה של התוכנות עם פסיקים -->
+                                <label *ngFor="let p of s.Programslist ; let i = index">
+                                   {{p.ProgramName}}
+                                   <span *ngIf="i<s.Programslist.length-1">,</span>
+                               </label>
+                            </td>
+                            <td><img src={{s.ComputerImg}} alt="Third slide"> </td>
+                            <td>
+                                <td style="font-family: Calibri;color: grey;font-weight: bold;text-align: right;">
+                                    <mat-calendar [dateClass]="dateClass(s)" (selectedChange)="getDay($event)" (click)="create(s)"></mat-calendar>
+                                </td>
+                        </tr>
+
+
+                </tbody>
+            </table>
+        </div>
         <!-- <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner> -->
 
         <mat-spinner class="custom-spinner" mode="indeterminate" value="100" [hidden]="!getData"></mat-spinner>
