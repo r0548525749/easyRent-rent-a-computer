@@ -33,9 +33,11 @@ export class ExistingcostomerComponent implements OnInit {
   customers: Customer = new Customer();
   customerList: Array<Customer>;
   registerForm: FormGroup;
+  registerForm1: FormGroup;
+
   submitted = false;
   hide = true;
-
+  show=true
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerSer: CustomeresService,
@@ -91,8 +93,11 @@ export class ExistingcostomerComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    if(this.registerForm.invalid)
+    return;
     var c = new Customer();
-    if(this.registerForm.value["email"]==null || this.registerForm.value["password"]==null){
+    debugger
+    if(this.registerForm.value["email"]=="" || this.registerForm.value["password"]==""){
           alert("חסר שם משתמש או סיסמה.");
            return;
     }

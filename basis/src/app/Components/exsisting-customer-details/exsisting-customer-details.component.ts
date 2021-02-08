@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild ,AfterViewInit} from '@angular/core';
-
 import { OrdercomponentComponent } from '../ordercomponent/ordercomponent.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/Classes/Order';
@@ -25,8 +24,7 @@ export class ExsistingCustomerDetailsComponent implements OnInit , AfterViewInit
   secondFormGroup: FormGroup;
   options: FormGroup;
   shoppingBag: Array<ComputerWithProgram>;
-  
-ComputerListWithDate:ComputerWithProgramWithDate[];
+  ComputerListWithDate:ComputerWithProgramWithDate[];
   displayedColumns: string[] = ['Id',"FromDate","EndDate", 'CompanyName', 'Type', 'Prossess','Memory','HardDisk','ScreenSize','Programslist','RemoveItem'];
   dataSource =null;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -36,8 +34,10 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
     if (pager) this.dataSource.paginator = pager;
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private orderSer: OrderService,
-    private CustomerSer: CustomeresService, private formBuilder: FormBuilder, private router: Router,
+  constructor(private activatedRoute: ActivatedRoute,
+     private orderSer: OrderService,
+    private CustomerSer: CustomeresService, 
+    private formBuilder: FormBuilder, private router: Router,
     private shoppingBagSer:ShoppingBagService,
     private compSer:ComputerWithProgramService) { }
     today:Date
@@ -55,11 +55,8 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    debugger
-    // this.dataSource=new MatTableDataSource<ComputerWithProgram>(this.shoppingBag);
-    // this.dataSource.paginator = this.paginator;
-
   }
+
   goTo(){
     if(this.CustomerSer.CurrentCustomer!=undefined&&this.CustomerSer.CurrentCustomer!=null){
        this.CustomerSer.GetLandbyCustomerId(this.CustomerSer.CurrentCustomer.Id).subscribe(
@@ -68,7 +65,6 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
         this.orderList = myData;
         for(let i=0;i<this.orderList.length;i++)
        { let c=this.compSer.list.find(c=>c.Id=this.orderList[i].ProudactId)
-        
         let tOrF=true
         if(new Date(this.orderList[i].ToDate).getTime()<new Date(this.today).getTime())
         tOrF=true
@@ -76,15 +72,11 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
         tOrF=false
        this.ComputerListWithDate.push(new ComputerWithProgramWithDate(c.Id,c.LepTopId,c.CompanyId,c.CompanyName,c.ComputerImg,c.Type,c.Prossess,c.Memory,c.HardDisk,c.ScreenSize,c.ComputerImg,c.Programslist,this.orderList[i].FromDate,this.orderList[i].ToDate,this.orderList[i].Id,tOrF));
       }
-      this.sortByDueDate(  this.ComputerListWithDate)
+      this.sortByDueDate(this.ComputerListWithDate)
         this.dataSource=new MatTableDataSource<ComputerWithProgramWithDate>(this.ComputerListWithDate);
         this.dataSource.paginator = this.paginator;
-    debugger
       },
       myErr => { console.log(myErr.message); });
-    alert(this.orderList);
-      // this.router.navigate([url])
-
     }
     else{
       alert("יש להכנס כלקוח");
@@ -93,9 +85,7 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
   }
   
   HistoryUser(userId: number) {
-    alert(userId);
     if (this.CustomerSer.CurrentCustomer != undefined && this.CustomerSer.CurrentCustomer != null) {
-      alert("lllllll");
       this.CustomerSer.GetLandbyCustomerId(userId).subscribe(
         myData => {
           // this.orderList = myData;
@@ -116,14 +106,12 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
 
   removeItem(orderID:number)
   {
-    debugger
    this.orderSer.deleteOrder(orderID).subscribe(myData=>
     {
       this.ComputerListWithDate=new Array();
         this.orderList = myData;
         for(let i=0;i<this.orderList.length;i++)
        { let c=this.compSer.list.find(c=>c.Id=this.orderList[i].ProudactId)
-        
         let tOrF=true
         if(new Date(this.orderList[i].ToDate).getTime()<new Date(this.today).getTime())
         tOrF=true
@@ -150,8 +138,8 @@ ComputerListWithDate:ComputerWithProgramWithDate[];
   changeDateDateFrom:Date;
   changeDate(orderID:number)
   {
-this.IschangDate=true;
-this.changeDateFormat= new Date(this.orderList.find(ed=>ed.Id==orderID).ToDate).toDateString();
+  this.IschangDate=true;
+  this.changeDateFormat= new Date(this.orderList.find(ed=>ed.Id==orderID).ToDate).toDateString();
   this.changeDateOrderId=orderID;
   this.changeDateComputerId=this.orderList.find(ed=>ed.Id==orderID).ProudactId;
   this.changeDateDateFrom=this.orderList.find(ed=>ed.Id==orderID).FromDate;
@@ -162,10 +150,9 @@ this.changeDateFormat= new Date(this.orderList.find(ed=>ed.Id==orderID).ToDate).
     this.orderSer.ChackOorderDate(new Date(this.changeDateDateFrom).toDateString(),new Date(this.changeDateFormat).toDateString()).subscribe(
       myData =>
       {
-        debugger
         if(myData.find(c=>c.Id==this.changeDateComputerId)==null)
       {
-        alert("The Date ....")
+        alert("התאריך השתנה בהצלחה!!")
       }
       else
       {
@@ -193,6 +180,7 @@ this.changeDateFormat= new Date(this.orderList.find(ed=>ed.Id==orderID).ToDate).
       }
     })
   }
+
   cancleChangeDate()
   {
     this.changeDateOrderId=0;
@@ -200,15 +188,9 @@ this.changeDateFormat= new Date(this.orderList.find(ed=>ed.Id==orderID).ToDate).
     this.changeDateFormat="";
   }
 
-
   sortByDueDate(myArray: ComputerWithProgramWithDate[]): void {
-   
-
     myArray.sort((a: ComputerWithProgramWithDate, b: ComputerWithProgramWithDate) => {
-      //  console.log("a.FromDate.getDate()"+new Date( a.FromDate).getTime())
-
       return new Date(a.dateE).getTime() - new Date(b.dateE).getTime();
-
     });
   }
 }

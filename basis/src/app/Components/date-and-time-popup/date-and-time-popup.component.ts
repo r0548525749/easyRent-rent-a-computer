@@ -19,30 +19,23 @@ import * as moment from 'moment';
 })
 export class DateAndTimePopupComponent implements OnInit {
   date = new FormControl(moment([2017, 0, 1]));
-
   dataSource = null;
   dataSourceQ = null;
   dataSourceO = null;
   check: number = 0;
   submitted = false;
   hide = true;
-  form: any;
   @Input() parentData;
-  //@Input() startDate:string;
   dataFromManager: any;
   fromDate: Date;
   toDate: Date;
-  startDate: Date;
   starttime: Time;
   endtime: Time;
-  endDate: Date;
   aa: string[]
   range: FormGroup;
+
   constructor(
-    private activatedRoute: ActivatedRoute,
     private customerSer: CustomeresService,
-    private SoftwerSer: SoftwaresService,
-    private formBuilder: FormBuilder,
     private orderSer: OrderService,
     public matdialog: MatDialogRef<DatachangeComponent>,
     private fb: FormBuilder,
@@ -63,14 +56,32 @@ export class DateAndTimePopupComponent implements OnInit {
       this.listStartHour.push(new hourDay(i, false))
       this.listEndHour.push(new hourDay(i, false))
     }
-    this.startDate = new Date(this.data.startDate)
+   // this.startDate = new Date(this.data.startDate)
   }
 
   initForm() {
+    debugger
     this.range = this.fb.group({
-      start: new FormControl(),
-      end: new FormControl()
+      startDate: [new Date(this.data.startDate)],
+      endDate: [new Date(this.data.endDate)]
+      // startDate:new FormControl(),
+      // endDate: new FormControl()
     });
+  }
+
+  get startDate() {
+    if (this.range.get('startDate')) {
+      return this.range.get('startDate').value;
+    } else {
+      return null;
+    }
+  }
+  get endDate() {
+    if (this.range.get('endDate')) {
+      return this.range.get('endDate').value;
+    } else {
+      return null;
+    }
   }
 
   fillHours(h) {
@@ -91,7 +102,8 @@ export class DateAndTimePopupComponent implements OnInit {
   }
   currentOrder: Order;
   CheckDate1() {
-    this.currentOrder = new Order(0, this.startDate, this.endDate, this.data.comp.Id, 152, 126, "16:00:00", "16:00:00", this.customerSer.CurrentCustomer.Id);
+    debugger
+    this.currentOrder = new Order(0, this.range.get('startDate').value, this.range.get('endDate').value, this.data.comp.Id, 152, 126, "16:00:00", "16:00:00", this.customerSer.CurrentCustomer.Id);
     this.orderSer.AddOrders(this.currentOrder).subscribe(myData => {
       this.onCloase()
     }, err => { });
@@ -113,13 +125,13 @@ export class DateAndTimePopupComponent implements OnInit {
   showErrMsg: boolean = false;
   errMsg: string
   checkStartDate(st: any) {
+    debugger
     this.showErrMsg = false;
     this.startHours = new Array();
     this.fillHours(this.startHours)
     let to = new Date();
-    if (this.startDate.setHours(0) < to.setHours(0, 0, 0, 0)) {
-
-      this.startDate = null
+    if (new Date(this.startDate).setHours(0) < new Date(to).setHours(0, 0, 0, 0)) {
+      this.range.get('startDate').reset();
       st.focus();
       this.errMsg = "תאריך לא יכול להיות קטן מהיום"
       this.showErrMsg = true
@@ -129,7 +141,7 @@ export class DateAndTimePopupComponent implements OnInit {
       if (chD.status == 3) {
         for (let j = 0; j < this.listStartHour.length; j++)
           this.listStartHour[j].status = true;
-        this.startDate = null;
+        this.range.get('startDate').reset();
         st.focus();
         this.errMsg = "תאריך זה תפוס"
         this.showErrMsg = true
@@ -168,23 +180,24 @@ export class DateAndTimePopupComponent implements OnInit {
   }
   today: Date;
   checkEndDate(eh: any) {
+    debugger
     this.endHours = new Array();
     this.fillHours(this.endHours)
     if (this.startDate > this.endDate) {
-      this.endDate = null
+      this.range.get('endDate').reset();
       eh.focus();
       this.errMsg = "תאריך לא יכול להיות קטן מתאריך ההתחלה"
       this.showErrMsg = true
       return
     }
-    if (this.startDate != this.endDate) {
+    if (this.startDate.toString() != this.endDate.toString()) {
       let arrDate = this.data.comp.ListStatus.filter(c => new Date(c.date) <= this.endDate && new Date(c.date) >= this.startDate)
       if (arrDate != null && arrDate.length > 0) {
-        this.endDate = arrDate[0].date;
+        this.range.get('endDate').setValue(arrDate[0].date);
         let a
         if (arrDate[0].status == 3) {
           a = new Date(this.endDate).setDate(new Date(this.endDate).getDate() - 1);
-          this.endDate = new Date(a);
+          this.range.get('endDate').setValue(new Date(a));
         }
       }
     }
@@ -195,7 +208,7 @@ export class DateAndTimePopupComponent implements OnInit {
       if (chD.status == 3) {
         for (let j = 0; j < this.listEndHour.length; j++)
           this.listEndHour[j].status = true;
-        this.endDate = null;
+        this.range.get('endDate').reset();
         eh.focus();
         this.errMsg = "תאריך זה תפוס"
         this.showErrMsg = true
@@ -227,15 +240,16 @@ export class DateAndTimePopupComponent implements OnInit {
     }
   }
   sh: number
-  checkstartHour() {
+  checkstartHour(event) {
+    debugger
     this.endHours = new Array()
     this.fillHours(this.endHours)
-    this.startDate.setHours(0)
+    new Date(this.startDate).setHours(0)
     if (new Date(this.startDate).getDate() == new Date(this.endDate).getDate()) {
-      this.endHours = this.endHours.filter(f => f.numHour > this.sh)
+      this.endHours = this.endHours.filter(f => f.numHour > event.value)
       for (let j = 0; j < this.listEndHour.length; j++)
-        if (this.listEndHour[j].status == true && this.listEndHour[j].hour > this.sh)
-          this.endHours = this.endHours.filter(f => f.numHour <= this.listEndHour[j].hour && f.numHour >= this.sh)
+        if (this.listEndHour[j].status == true && this.listEndHour[j].hour > event.value)
+          this.endHours = this.endHours.filter(f => f.numHour <= this.listEndHour[j].hour && f.numHour >= event.value)
     }
     else {
       for (let j = 0; j < this.listEndHour.length; j++) {
@@ -244,12 +258,12 @@ export class DateAndTimePopupComponent implements OnInit {
         break;
       }
     }
-    this.startDate.setHours(this.sh + 2);
+    this.startDate.setHours(event.value + 2);
     console.log("startDate", this.startDate);
   }
   eh1: number;
-  checkendtHour() {
-    this.endDate.setHours(this.eh1 + 2);
+  checkendtHour(event) {
+   this.endDate.setHours(event.value + 2);
     console.log("endDate", this.endDate);
 
   }

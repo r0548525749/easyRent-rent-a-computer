@@ -10,7 +10,7 @@ import { DatachangeComponent } from '../datachange/datachange.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Software } from 'src/app/Classes/software';
 import { HelloComponent } from '../hello/hello.component';
-import { ContentDialogComponent } from 'src/app/content-dialog/content-dialog.component';
+import { ContentDialogComponent } from 'src/app/Components/content-dialog/content-dialog.component';
 import {CardModule} from 'ngx-card/ngx-card';
 
 @Component({

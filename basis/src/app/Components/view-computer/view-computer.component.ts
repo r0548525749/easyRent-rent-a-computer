@@ -27,6 +27,7 @@ import { DateAndTimePopupComponent } from '../date-and-time-popup/date-and-time-
 import { R3DirectiveMetadataFacade } from '@angular/compiler/src/compiler_facade_interface';
 import { statusDate } from 'src/app/Classes/ststusDate';
 import { Order } from 'src/app/Classes/Order';
+// import { networkInterfaces } from 'os';
 // import { DateAdapter } from '@angular/material/core';
 
 export interface Name {
@@ -92,6 +93,7 @@ export class ViewComputerComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
   showFilter:boolean=false;
+  computerWithProgramD:Array<ComputerWithProgramD> = new Array();
   // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -170,7 +172,15 @@ this.getData=true;
         this.computerWithProgramList = myData;
 
         this.computerWithProgramListFilter = myData;
-         this.colorCalander()
+        var i =0; 
+        this.colorCalander()
+       
+        this.computerWithProgramListFilter .forEach(element => {  
+          this.computerWithProgramD.push(new ComputerWithProgramD(element, false) )
+          
+        });
+
+        
         this.memmoryList = this.getMemmory();
         this.typeList = this.getType();
         this.processList = this.getProcess();
@@ -238,6 +248,7 @@ this.getData=true;
   }
    date1:statusDate
   dateClass(c: ComputerWithProgram) {
+   
       return (date: Date): MatCalendarCellCssClasses =>{
        {  
          if(c.ListStatus!=null && c.ListStatus.length>0)
@@ -346,6 +357,7 @@ this.getData=true;
     date2:statusDate;  
   dateFilter (c:any)
   {
+    debugger
     return(date: Date) =>
        {     
         if(c.ListStatus!=null && c.ListStatus.length>0)
@@ -482,4 +494,8 @@ this.getData=true;
   }
 }
 
-
+export class ComputerWithProgramD{
+constructor(
+public  computer:ComputerWithProgram,
+public  date:boolean){}
+}

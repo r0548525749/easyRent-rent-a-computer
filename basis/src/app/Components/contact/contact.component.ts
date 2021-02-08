@@ -23,5 +23,5 @@ export class ContactComponent implements OnInit {
   favoriteCartoon: string;
   cartoons: string[] = ['Tom and Jerry', 'Rick and Morty', 'Ben 10', 'Batman: The Animated Series'];
   cartoonControl = new FormControl('', [Validators.required]);
-
+  onSubmit(){}
 }

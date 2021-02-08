@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
-import { ContentDialogComponent } from 'src/app/content-dialog/content-dialog.component';
+import { ContentDialogComponent } from 'src/app/Components/content-dialog/content-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

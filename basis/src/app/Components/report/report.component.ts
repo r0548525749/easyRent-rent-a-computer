@@ -17,7 +17,6 @@ export class ReportComponent implements OnInit {
         {
           ticks: {
             stepSize: 1,
-
             beginAtZero: true,
           }
         }
@@ -38,17 +37,12 @@ export class ReportComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       myParam => {
         if (myParam['id'] == 1) {
-
-
           this.ReportSer.GetCountMounthLendReport().subscribe(myData => {})
-
             // this.ReportSer.reports= myData;
             // this.barChartLabels=Object.keys(this.ReportSer.reports);
             // this.barChartData.push({data:Object.values(this.ReportSer.reports),label:"computers usage",backgroundColor: "#3e95cd", })
-
             this.ReportSer.GetComputersUsageReport().subscribe(
               myData => {
-                debugger
                 this.barChartLabels=new Array()
                 let arrData=new Array();
                 this.ReportSer.reports = myData;
@@ -57,8 +51,7 @@ export class ReportComponent implements OnInit {
                   arrData.push(element.value)
                 });
                // this.barChartLabels = Object.keys(this.ReportSer.reports);
-                this.barChartData.push({ data:arrData, label: "computers usage", backgroundColor: "#FF6600", })
-                debugger
+                this.barChartData.push({ data:arrData, label: "computers usage", backgroundColor: "#FF6600", hoverBackgroundColor: "#ff66007d"})
               },
               myErr => { console.log(myErr.message); });
           }
@@ -67,12 +60,10 @@ export class ReportComponent implements OnInit {
         {
         if (myParam['id'] == 2) 
         {
-
           this.ReportSer.GetCountMounthLendReport().subscribe(myData => {
             this.ReportSer.reports = myData;
             this.barChartLabels = Object.keys(this.ReportSer.reports);
-            this.barChartData.push({ data: Object.values(this.ReportSer.reports), label: "Monthly rental amount", backgroundColor: "#FF6600", })
-            debugger
+            this.barChartData.push({ data: Object.values(this.ReportSer.reports), label: "Monthly rental amount",backgroundColor: "#FF6600", hoverBackgroundColor: "#ff66007d" })
           }) 
          }
         }

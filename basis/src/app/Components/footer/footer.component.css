@@ -1,0 +1,46 @@
+.footer {
+    padding: 1%;
+    background-color: #333333;
+    color: #7a7a7a;
+    text-align: center;
+    position: static;
+    bottom: 0%;
+    border-top: solid;
+    border-top-color: #FF6600;
+}
+
+.logo-img {
+    width: 35%;
+    border-bottom: solid;
+    border-bottom-color: #FF6600;
+    height: 52px;
+    justify-content: center;
+    position: relative;
+    right: 37%;
+    margin-bottom: 2%;
+}
+
+.in-logo-img {
+    width: 20%;
+}
+
+.info {
+    padding-top: 1%;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #333333;
+}
+
+.contact {
+    padding: 1%;
+    color: #e8e8e8;
+    font-size: 20px;
+    margin: auto;
+}
+
+.contactColor {
+    padding: 1%;
+    color: #FF6600;
+    font-size: 20px;
+    margin: auto;
+}

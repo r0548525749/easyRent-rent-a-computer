@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DateandtimepopuppComponent } from './dateandtimepopupp.component';
+import { ForgetPasswordComponent } from './forget-password.component';
 
-describe('DateandtimepopuppComponent', () => {
-  let component: DateandtimepopuppComponent;
-  let fixture: ComponentFixture<DateandtimepopuppComponent>;
+describe('ForgetPasswordComponent', () => {
+  let component: ForgetPasswordComponent;
+  let fixture: ComponentFixture<ForgetPasswordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DateandtimepopuppComponent ]
+      declarations: [ ForgetPasswordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DateandtimepopuppComponent);
+    fixture = TestBed.createComponent(ForgetPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

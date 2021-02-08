@@ -22,21 +22,24 @@
     background-color: rgb(50, 50, 150);
 }
 
-.footer {
+
+/* .footer {
     width: 101.2%;
     height: 15%;
     background-color: #333333;
-}
+} */
 
 .main {
-    background-color: rgb(232, 232, 235);
+    background-color: #e8e8e8;
     font-size: inherit;
     font-family: cursive;
     font-family: Tahoma;
     direction: rtl;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-sizing: border-box;
-    width: 100%;
+    width: 90%;
+    margin: auto;
+    /* text-align: center; */
 }
 
 
@@ -52,7 +55,7 @@
 
 .logoDiv {
     border-bottom: solid;
-    border-color: #FF6600;
+    background-color: #FF6600;
     border-width: 4px;
     /* margin-top: 50px; */
     margin-bottom: 6%;
@@ -61,14 +64,15 @@
 }
 
 .logoImgDiv {
-    margin-top: 5%;
+    margin-top: 1.2%;
     width: fit-content;
-    margin-right: 75%;
-    margin-bottom: 12%;
+    margin-right: 89%;
+    margin-bottom: 11%;
 }
 
 img {
     width: 200px;
+    height: 185px;
 }
 
 .titleImgDiv {

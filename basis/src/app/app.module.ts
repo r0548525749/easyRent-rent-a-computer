@@ -58,7 +58,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { CreateComanyComponent } from './Components/create-company/create-company.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ContentDialogComponent } from './content-dialog/content-dialog.component';
+import { ContentDialogComponent } from './Components/content-dialog/content-dialog.component';
 import { CardModule } from 'ngx-card/ngx-card';
 import { DateAndTimePopupComponent } from './Components/date-and-time-popup/date-and-time-popup.component';
 import { ReportComponent } from './Components/report/report.component';
@@ -75,8 +75,9 @@ import { ProgramChangeComponent } from './Components/program-change/program-chan
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { DateandtimepopuppComponent } from './dateandtimepopupp/dateandtimepopupp.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './Components/home/home.component';
+import { CarouselModule, WavesModule } from 'ng-uikit-pro-standard';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component'
 
 const appRoutes: Routes = [
   { path: '', redirectTo: "existing", pathMatch: "full" },
@@ -105,6 +106,7 @@ const appRoutes: Routes = [
   { path: "Rule", component: RuleComponent },
   { path: "MainRule", component: MainRuleComponent },
   { path: "contact", component: ContactComponent },
+  { path: "forgetPassword", component: ForgetPasswordComponent },
   { path: "programChange", component: ProgramChangeComponent },
   {
     path: "manager", component: ManagerComponent,
@@ -155,8 +157,8 @@ const appRoutes: Routes = [
     RuleComponent,
     MainRuleComponent,
     ProgramChangeComponent,
-    DateandtimepopuppComponent,
-    HomeComponent],
+    HomeComponent,
+    ForgetPasswordComponent],
   imports: [
     ToastrModule.forRoot(),
     BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(appRoutes),
@@ -166,7 +168,7 @@ const appRoutes: Routes = [
     MatRadioModule, MatTabsModule, MatToolbarModule, MatTreeModule, SignaturePadModule,
     MgxCircularProgressModule, NgPaymentCardModule, MatDatepickerModule, MatNativeDateModule,
     MatCardModule, MatButtonToggleModule, MatTableModule, MatExpansionModule, CardModule, ChartsModule,
-    MatSliderModule, MatProgressSpinnerModule, MatSidenavModule
+    MatSliderModule, MatProgressSpinnerModule, MatSidenavModule, CarouselModule,WavesModule
     // AngularSignaturePadModule.forRoot()
   ],
 

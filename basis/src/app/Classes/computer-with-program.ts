@@ -39,13 +39,8 @@ export class ComputerWithProgramWithDate {
         public dateE:Date,
         public orderID:number,
         public datePass:boolean
-       
     ) { }
 }
-
-
-
-
 // public SoftwareId:number=null,
 // public ProgramId:number=null,
 // public CompanyId:number=null,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// For MDB Angular Free
 
 @Component({
   selector: 'app-home',

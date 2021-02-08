@@ -41,8 +41,8 @@
 
 .fieldfont {
     width: 400px;
-    border-color: palevioletred;
-    color: lightcoral;
+    border-color: whitesmoke;
+    color: whitesmoke;
     font-family: cursive;
 }
 
@@ -50,6 +50,7 @@
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    margin: auto;
 }
 
 .example-full-width {
@@ -87,4 +88,15 @@
 .myButton:active {
     position: relative;
     top: 1px;
+}
+
+.w-5\/12 {
+    width: 41.666667%;
+    margin: auto;
+    margin-top: 0px;
+    height: 100%;
+}
+
+.h-screen {
+    height: auto;
 }

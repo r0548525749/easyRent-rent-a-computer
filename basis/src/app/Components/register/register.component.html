@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>‏
 <router-outlet></router-outlet>
 <mat-horizontal-stepper [linear]="true" #stepper style="background-color: rgb(232, 232, 235);">
     <mat-step [stepControl]="engineerForm">
@@ -18,8 +19,8 @@
                 </mat-radio-group>
                 <div class="card-container"></div>
                 <div>
-                    <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
-                        <button mat-button matStepperNext>הבא</button>
+                    <div style="font-family: Calibri;;color: grey;text-align: right;">
+                        <button mat-button matStepperNext style="font-size:24px">הבא <i class="fa fa-hand-o-left"></i></button>
                     </div>
                 </div>
             </form>
@@ -33,7 +34,6 @@
             <div class="card-body" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
                 <form class="col-sm-12 form-content" *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
-
                         <div class="form-group col-5">
                             <label>שם פרטי</label>
                             <input type="text" formControlName="firstName" class="form-control" [(ngModel)]="customers.FirstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
@@ -53,7 +53,6 @@
                     </div>
 
                     <div class="form-group col-5">
-                        <label>מייל</label>
                         <input type="text" formControlName="email" class="form-control" [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                             <div *ngIf="f.email.errors.required">Email is required</div>
@@ -103,8 +102,8 @@
             </div>
         </div>
         <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
-            <button mat-button matStepperPrevious>הקודם</button>
-            <button mat-button matStepperNext (click)="submitted=true" type="submit">הבא</button>
+            <button mat-button matStepperPrevious style="font-size:24px">הקודם <i class="fa fa-hand-o-right"></i></button>
+            <button mat-button matStepperNext (click)="submitted=true" type="submit" style="font-size:24px">הבא <i class="fa fa-hand-o-left"></i></button>
         </div>
 
     </mat-step>
@@ -120,7 +119,7 @@
                 מאשר תנאי שימוש
             </mat-checkbox>
             <br><br>
-            <button mat-button matStepperPrevious>הקודם</button>
+            <button mat-button matStepperPrevious style="font-size:24px">הקודם <i class="fa fa-hand-o-right"></i></button>
             <button mat-button (click)="AddCustomer()">סיום</button>
         </div>
     </mat-step>

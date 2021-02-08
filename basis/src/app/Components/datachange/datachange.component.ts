@@ -205,7 +205,7 @@ export class DatachangeComponent implements OnInit {
     this.SoftwerSer.addSoftwerOnServer(this.softwers).subscribe(
       myData => {
         alert("add sucssesful"); this.softwers = myData;
-        debugger
+        
       },
       myErr => { alert(myErr.message); });
   }
