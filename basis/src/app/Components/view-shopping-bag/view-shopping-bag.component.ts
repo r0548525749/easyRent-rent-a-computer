@@ -47,7 +47,6 @@ export class ViewShoppingBagComponent implements OnInit {
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    debugger
     this.dataSource=new MatTableDataSource<ComputerWithProgram>(this.shoppingBag);
     this.dataSource.paginator = this.paginator;
 

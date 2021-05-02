@@ -1,6 +1,11 @@
-<div>
+<div style="background-color: #c7c7c77d;">
     <br><br>
+    <div class="modal-header">
+        <h1 style=" color: white;"> יצירת הזמנה חדשה </h1>
+    </div>
     <form style="text-align: center;" [formGroup]="range" *ngIf="range">
+
+
 
         <mat-form-field color="accent">
             <label> בחר תאריך התחלה</label>
@@ -32,7 +37,7 @@
         </div>
         <br><br>
         <!-- Grid row -->
-        <div *ngIf="endHours">
+        <div *ngIf="endHours" style="size: 50%;">
             <label for="default-picker">בחר שעת סיום</label>
             <!-- <input type="time" id="default-picker" class="form-control" name="endH" [disabled]="!endDate" [(ngModel)]="endtime" placeholder="בחר שעת סיום"> -->
             <!-- <button [disabled]="!endDate || !startDate" *ngFor="let i of endHours" (click)="checkendtHour(i.numHour)">{{i.formatHour}}</button> -->
@@ -41,15 +46,20 @@
                     {{s.formatHour}}
                 </mat-option>
             </mat-select>
-
         </div>
-
+        <div>
+            <label> בחר סניף איסוף:</label>
+            <mat-select>
+                <mat-option *ngFor="let s of storeList" [value]="s.Locition" [ngModel]="s.Locition">
+                    {{s.Locition}}
+                </mat-option>
+            </mat-select>
+        </div>
     </form>
-
     <br><br>
-    <div class="row">
-        <button mat-button matSuffix mat-icon-button (click)="onCloase()" aria-label="Clear">     ביטול</button>
-        <button mat-button matSuffix mat-icon-button (click)="CheckDate1()" aria-label="Clear">יצרת הזמנה</button>
+    <div class="row" style="text-align: center; ">
+        <button mat-flat-button (click)="onCloase()" aria-label="Clear"> <i class=""></i>    ביטול</button>
+        <button mat-flat-button (click)="CheckDate1()" aria-label="Clear"><i class="	fa fa-pencil-square-o"></i> יצרת הזמנה</button>
     </div>
 </div>
 

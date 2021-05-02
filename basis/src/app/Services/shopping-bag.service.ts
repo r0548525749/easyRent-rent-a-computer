@@ -14,7 +14,6 @@ export class ShoppingBagService {
    }
 
   public getShoppingBag(){
-    debugger
     return this.shoppingBag;
   }
   

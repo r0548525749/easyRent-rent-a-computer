@@ -40,7 +40,7 @@ export class HeaderHideComponent implements OnInit {
 
   cheackUser(){
      if(this.customerSer.CurrentCustomer.Gmail=="")
-this.isManager=true;
+        this.isManager=true;
   }
   
 }

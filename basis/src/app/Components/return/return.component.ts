@@ -16,8 +16,9 @@ export class ReturnComponent implements OnInit {
   disabled:false;
   returnForm:FormGroup;
 
-  constructor(private rulesSer: RulesService, private router: Router,
-    private orderSer:OrderService,private formBuilder: FormBuilder,) { }
+  constructor(private rulesSer: RulesService,
+   private orderSer:OrderService,
+    private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
     this.returnForm = this.formBuilder.group({
@@ -31,10 +32,6 @@ addSum(){
   // this.rulesSer.CurrentRull=aaa;
 }
 CheackReturnOrderByIdAndTime(){
-  //alert(this.borureForm.value.numOrder);
-  alert(this.returnForm.value.numOrder)
-
-  debugger
   this.orderSer.CheackReturnOrderByIdAndTime(this.returnForm.value.numOrder).subscribe(
     myData => {
       //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת

@@ -12,7 +12,6 @@ import { RulesService } from 'src/app/Services/rules.service';
 })
 export class RuleComponent implements OnInit {
 
-
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -23,13 +22,9 @@ export class RuleComponent implements OnInit {
   sum:number=0;
   constructor(private formBuilder: FormBuilder,
     private rulesSer: RulesService,
-   private router: Router) { }
+   private router: Router
+   ) { }
 
-    displayedColumns: string[] = ['IdRule', 'Description', 'Type', 'Price','RemoveItem'];
-    dataSource1 =null;
-  
-    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  
   ngOnInit() {
     this.rulesSer.GetRule().subscribe(
       myData => {
@@ -47,17 +42,15 @@ export class RuleComponent implements OnInit {
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    debugger
-    this.dataSource1=new MatTableDataSource<Rule>(this.rule);
-    this.dataSource1.paginator = this.paginator;
   }
+
   click(price:number){
   this.sum+=price;
-  this.rulesSer.CurrentRull=this.sum;
+  this.rulesSer.CurrentRull+=this.sum;
+  alert( this.rulesSer.CurrentRull)
   }
-  showSum(){
 
-    alert(this.sum)
- this.router.navigate(['/return']);
+  showSum(){
+   this.router.navigate(['/return']);
   }
 }

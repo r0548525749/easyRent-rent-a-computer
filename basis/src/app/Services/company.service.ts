@@ -28,17 +28,16 @@ export class CompanyService {
   }
 
   AddCompany(c: Company): Observable<Array<Company>> {
-    debugger
     return this.http.post<Array<Company>>(this.URL + "/AddCompany", c);
   }
+  
   RemoveCompany(id: number): Observable<Array<Company>>
   {
     return this.http.delete<Array<Company>>(this.URL + "/RemoveCompany/"+ id);
   }
+
   updateComapny(c:Company): Observable<Array<Company>> {
-    debugger
     return this.http.put<Array<Company>>(this.URL + "/UpdateCompany", c);
   }
-
 
 }

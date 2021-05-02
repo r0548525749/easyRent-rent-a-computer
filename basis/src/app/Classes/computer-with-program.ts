@@ -1,6 +1,8 @@
 import { Order } from './Order';
 import { Softwer2 } from './softwer2';
 import { statusDate } from './ststusDate';
+import { Product } from './product';
+
 
 export class ComputerWithProgram {
     constructor(
@@ -15,10 +17,14 @@ export class ComputerWithProgram {
         public HardDisk: string = "",
         public ScreenSize: string = "",
         public ComputerImg: string = "",
+        public PriceDay:number=0,
+        public PriceHour:number=0,
+        public product: Product= new Product(),
         public Programslist: Array<Softwer2>=null,
-        public OrdersDate: Array<Order>=null   ,
+        public OrdersDate: Array<Order>=null,
        //כל תאריך שמוצג על הלוח מה הסטטוס שלו- 3-תפוס, 2 -פנוי חלקית
-        public ListStatus:Array<statusDate>=null
+        public ListStatus:Array<statusDate>=null,
+      public isRented?:boolean
     ) { }
 }
 export class ComputerWithProgramWithDate {

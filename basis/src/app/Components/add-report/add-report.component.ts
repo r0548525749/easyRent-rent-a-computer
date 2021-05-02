@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComplaintsService } from 'src/app/Services/complaints.service';
 import { Complaint } from 'src/app/Classes/complaint';
+import { CustomeresService } from 'src/app/Services/customeres.service';
 
 @Component({
   selector: 'app-add-report',
@@ -12,15 +13,19 @@ import { Complaint } from 'src/app/Classes/complaint';
 export class AddReportComponent implements OnInit {
 coomplainList:Array<Complaint>;
 complain:Complaint;
+
 reportForm:FormGroup;
   submitted: boolean;
 
   constructor( 
     private activatedRoute: ActivatedRoute, 
-    private complainSer: ComplaintsService, 
+    private complainSer: ComplaintsService,
+  private userSer:CustomeresService, 
     private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
+    this.complain=new Complaint(null,this.userSer.CurrentCustomer.Id,"",false,"");
+    
     this.InitReport();
     this.InitForm();
     }
@@ -41,12 +46,13 @@ reportForm:FormGroup;
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     telephon1: ['', [Validators.required, Validators.minLength(9)]],
-    complain: ['', [Validators.required, Validators]]
+    complain: ['', [Validators.required, Validators]],
+    idComputer:['', [Validators.required, Validators]]
     })
 }
 
   addComplain(){
-    this.complain = new Complaint(0,this.reportForm.value.password,this.reportForm.value.complain);
+    this.complain = new Complaint(0,this.userSer.CurrentCustomer.Id,this.reportForm.value.complain,false,"",this.reportForm.value.idComputer,new Date());
     this.complainSer.AddComplain(this.complain).subscribe(
       myData => { console.log("add sucssesful"); },
       myErr => { console.log(myErr.message); });
@@ -55,7 +61,9 @@ reportForm:FormGroup;
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.reportForm.invalid) {
+    if (!this.reportForm.invalid) {
+      debugger
+      this.complain.Date=new Date();
       this.complainSer.AddComplain(this.complain).subscribe(
         myData => { console.log("add sucssesful"); this.complain = myData; },
         myErr => { console.log(myErr.message); });

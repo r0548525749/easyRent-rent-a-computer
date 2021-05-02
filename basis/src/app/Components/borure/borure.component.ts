@@ -67,12 +67,10 @@ t=false
       myData => {
         //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת
         if(myData==true){
-          debugger
          this.ttt=true
           alert("השאלתך נקלטה במערכת")   
         }
         else{
-          debugger
           this.t=true
           alert("מצטערים, אין אפשרות להשאיל")
         }

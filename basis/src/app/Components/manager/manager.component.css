@@ -131,6 +131,10 @@ hr {
     display: table;
 }
 
+.make-gold {
+    background-color: #f0f5f5
+}
+
 
 /* Change styles for cancel button and delete button on extra small screens */
 

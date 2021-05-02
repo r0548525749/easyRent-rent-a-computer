@@ -4,18 +4,18 @@
 
     <form [formGroup]="borureForm">
         <!-- Grid row -->
-        <div class="form-row">
-            <!-- Default input -->
-            <div class="form-group col-md-6">
+        <!-- <div class="form-row"> -->
+        <!-- Default input -->
+        <!-- <div class="form-group col-md-6">
                 <label for="defaultContactFormName">שם פרטי</label>
                 <input type="text" formControlName="firstName" id="defaultContactFormName" class="form-control" placeholder="שם פרטי">
-            </div>
-            <!-- Default input -->
-            <div class="form-group col-md-6">
+            </div> -->
+        <!-- Default input -->
+        <!-- <div class="form-group col-md-6">
                 <label for="defaultContactFormName">שם משפחה</label>
                 <input type="text" formControlName="lastName" id="defaultContactFormName" class="form-control" placeholder="שם משפחה">
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
         <div class="form-row">
             <!-- Default input -->
             <div class="form-group col-md-6">
@@ -24,7 +24,7 @@
             </div>
             <!-- Default input -->
             <div class="form-group col-md-6">
-                <label for="defaultContactFormName">שם הזמנה</label>
+                <label for="defaultContactFormName">מספר הזמנה</label>
                 <input type="text" formControlName="numOrder" id="defaultContactFormName" class="form-control" placeholder="מספר הזמנה">
             </div>
 
@@ -51,7 +51,7 @@
         <!-- Grid row -->
         <button type="submit" class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" (click)="CheackOrderByIdAndTime()">לאישור</button> <br><br>
         <div>
-            <a routerLink="/register" style="color: #FF6600;"> אין לך הזמנה?</a>
+            <a routerLink="/viewComp" style="color: #FF6600;"> אין לך הזמנה?</a>
         </div>
     </form>
     <!-- Extended default form grid -->

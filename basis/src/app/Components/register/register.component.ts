@@ -72,8 +72,8 @@ disabled = false;
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      telephon1: ['', [Validators.required, Validators.minLength(9)]],
-      telephon2: ['', [Validators.required, Validators.minLength(9)]],
+      telephon1: ['', [Validators.required, Validators.pattern("[0-9]*"),Validators.minLength(9)]],
+      telephon2: ['', [Validators.required,Validators.pattern("[0-9]*"), Validators.minLength(9)]],
       // userName: ['', [Validators.required, Validators]],
       confirmPassword: ['', Validators.required],
     },
@@ -83,6 +83,7 @@ disabled = false;
       subscription: [undefined, Validators.required]
     })
   }
+  
   create() {
     const DialogConfig = new MatDialogConfig();
     DialogConfig.disableClose = true;
@@ -119,11 +120,8 @@ disabled = false;
       this.customerSer.addCustomerOnServer(this.customers).subscribe(
         myData => { console.log("add sucssesful"); this.customers = myData; },
         myErr => { console.log(myErr.message); });
-      // this.registerForm.value.SUCCESS('::submited Succsefuky');
       return;
     }
-    // display form values on success
-    // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
   }
 
   onReset() {
@@ -133,7 +131,6 @@ disabled = false;
   }
 
   next() {
-    console.log(this.engineerForm);
     //check
     // stepper.next();  
   }

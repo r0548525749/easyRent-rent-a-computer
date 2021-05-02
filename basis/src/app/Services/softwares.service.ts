@@ -32,9 +32,9 @@ export class SoftwaresService {
   }
 
   addSoftwerOnServer(fl: Software): Observable<Software> {
-    debugger
     return this.http.post<Software>(this.URL + "/PostSoftware", fl);
   }
+  
   deletePost(id): Observable<boolean> {
     return this.http.delete<boolean>(this.URL + "/DeleteSoftwaresById/" + id);
   }

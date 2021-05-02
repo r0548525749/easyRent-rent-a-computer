@@ -1,16 +1,18 @@
 <router-outlet></router-outlet>
-<p style="font-weight: bold; text-align: center;color: grey;"> ברוכים הבאים לצד מנהל </p>
-<p style="font-weight: bold;text-align: center;color: grey;">בחלק הזה תוכל לשנות ולעדכן את מאגר הנתונים </p>
-<p></p>
+<br><br>
+<p style="font-weight: bold; text-align: center;color:#FF6600;font-size:large;"> ברוכים הבאים לeasyRent- צד מנהל </p>
+<p style="font-weight: bold;text-align: center;color: grey;font-size:medium;">מנהל יקר בחלק הזה תוכל לנהל ולבצע שינוים למען יעילות ונוחות האתר ולעדכן את מאגר הנתונים </p>
+<p style="font-weight: bold;text-align: center;color: grey;font-size: small;">בסרגל המוצג לעיל תוכל לבצע פעולות שונות </p>
+
 <div style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
     <a mat-button routerLinkActive="mat-raised-button" routerLink="/complain"> צפייה בתלונות</a>
-    <a mat-button routerLinkActive="mat-raised-button" routerLink="/report">צפייה בסקרים</a>
+    <a mat-button routerLinkActive="mat-raised-button" routerLink="/MainRule">צפייה בסקרים</a>
 </div>
 <br>
 <mat-accordion class="example-headers-align" multi>
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle style="background-color: rgb(232, 232, 235);">
         <mat-expansion-panel-header>
-            <mat-panel-title style="font-weight: bold;color: grey;">
+            <mat-panel-title style="font-weight: bold;color: #FF6600;">
                 מחשב
             </mat-panel-title>
             <mat-panel-description style="font-weight: bold;">
@@ -18,8 +20,12 @@
                 <mat-icon>computer</mat-icon>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button (click)="create()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת מחשב</span></button>
+        <button href="#addSoftwerModal" data-toggle="modal" mat-raised-button (click)="create()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת מחשב</span></button>
         <div class="mat-elevation-z8" style="background-color: rgb(232, 232, 235);">
+            <mat-form-field>
+                <mat-label style="font-family: Calibri; color:#FF6600;">סינון</mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input matSort>
+            </mat-form-field>
             <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
 
                 <!-- Position Column -->
@@ -68,7 +74,7 @@
 
                 <ng-container matColumnDef="UpdateItem">
                     <th mat-header-cell *matHeaderCellDef style="font-family: Calibri;font-weight: bold;"> עדכון מחשב </th>
-                    <td mat-cell *matCellDef="let element"> <button mat-button (click)="OnEdit(element.Id)" style="color: #FF6600;">edit<mat-icon >launch</mat-icon></button></td>
+                    <td mat-cell *matCellDef="let element"> <button mat-button (click)="OnEdit(element.Id) " [disabled]="element.isRented" style="color: #FF6600;">edit<mat-icon >launch</mat-icon></button></td>
                 </ng-container>
 
                 <ng-container matColumnDef="RemoveItem">
@@ -79,7 +85,7 @@
                 <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row [ngClass]="{'make-gold': row.datePass }" *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row [ngClass]="{'make-gold': row.isRented }" *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
 
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
@@ -92,7 +98,7 @@
 
     <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle style="background-color: rgb(232, 232, 235);">
         <mat-expansion-panel-header>
-            <mat-panel-title style="font-weight: bold;color: grey;">
+            <mat-panel-title style="font-weight: bold;color: #FF6600;">
                 תוכנות
             </mat-panel-title>
             <mat-panel-description style="font-weight: bold;">
@@ -101,8 +107,12 @@
                 </mat-icon>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button (click)="creatSoftwer()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת מחשב</span></button>
+        <button href="#addSoftwerModal" data-toggle="modal" mat-raised-button (click)="creatSoftwer()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת מחשב</span></button>
         <div class="mat-elevation-z8">
+            <mat-form-field>
+                <mat-label style="font-family: Calibri; color:#FF6600;">סינון</mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input matSort>
+            </mat-form-field>
             <table *ngIf="this.ProgramList" mat-table [dataSource]="dataSource1" matSort multiTemplateDataRows>
                 <!-- SoftwareId -->
                 <ng-container matColumnDef="Id">
@@ -147,7 +157,7 @@
 
     <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle style="background-color: rgb(232, 232, 235);">
         <mat-expansion-panel-header>
-            <mat-panel-title style="font-weight: bold;color: grey;">
+            <mat-panel-title style="font-weight: bold;color: #FF6600;">
                 חברה
             </mat-panel-title>
             <mat-panel-description style="font-weight: bold;">
@@ -156,7 +166,11 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button (click)="createCompany()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת חברה</span></button>
+        <button href="#addSoftwerModal" data-toggle="modal" mat-raised-button (click)="createCompany()" style="background-color: #FF6600;color: white"><i class="material-icons">&#xE147;</i> <span>הוספת חברה</span></button>
+        <mat-form-field>
+            <mat-label style="font-family: Calibri; color:#FF6600;">סינון</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input matSort>
+        </mat-form-field>
         <table *ngIf="this.CompanyList" mat-table [dataSource]="dataSource2" matSort multiTemplateDataRows>
             <!-- SoftwareId -->
             <ng-container matColumnDef="Id">
@@ -190,6 +204,27 @@
             <tr mat-row [ngClass]="{'make-gold': row.datePass }" *matRowDef="let row; columns: displayedColumns2;"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">הקודם</button>
+            <button mat-button color="primary" (click)="nextStep()">הבא</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle style="background-color: rgb(232, 232, 235);">
+        <mat-expansion-panel-header>
+            <mat-panel-title style="font-weight: bold;color: #FF6600;">
+                שעות פתיחה
+            </mat-panel-title>
+            <mat-panel-description style="font-weight: bold;">
+                שנה מידע על שעות הפתיחה
+                <mat-icon>map</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-label>שעת פתיחה</mat-label>
+        <input type="time" id="default-picker" class="form-control" placeholder="שעת פתיחה">
+        <mat-label>שעת סגירה</mat-label>
+        <input type="time" id="default-picker" class="form-control" placeholder="שעת סגירה">
+
         <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">הקודם</button>
             <button mat-button color="primary" (click)="nextStep()">סוף</button>

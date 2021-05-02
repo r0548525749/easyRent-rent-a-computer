@@ -14,6 +14,8 @@ import { Program } from 'src/app/Classes/program';
 import { ProgramesService } from 'src/app/Services/programes.service';
 import { HttpEventType } from '@angular/common/http';
 import { ProgramWithVersion } from 'src/app/Classes/programWithVersion';
+import { StoreService } from 'src/app/Services/store.service';
+import { Store } from 'src/app/Classes/store';
 
 @Component({
   selector: 'app-datachange',
@@ -49,7 +51,6 @@ export class DatachangeComponent implements OnInit {
     private CompanySer: CompanyService,
     private TypeSer: TypeCompuetService,
     private programser:ProgramesService,
-    private formBuilder: FormBuilder,
     public matdialog: MatDialogRef<DatachangeComponent>,
 
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -92,15 +93,6 @@ export class DatachangeComponent implements OnInit {
   {
     this.programsChecked=event;
   }
-  // InitDataform() {
-  //   this.DataForm = this.formBuilder.group({
-  //     Softwerid: ['', [Validators.required, Validators.minLength(2)]],
-  //     softwerName: ['', Validators.required],
-  //     softwerVersion: ['', Validators.required],
-  //     softwerComment: ['', Validators.required],
-  //     softwerPic: ['', Validators.required]
-  //   });
-  // }
 
   InitcheakDialog() {
     if (this.matdialog != null)
@@ -163,7 +155,7 @@ export class DatachangeComponent implements OnInit {
                 this.data.editComputer.Picture=this.pic[0].name;
               }
             ); }
-             , err => { debugger })
+             , err => { })
         }
         this.onCloase()
         console.log(myData)
@@ -175,19 +167,6 @@ export class DatachangeComponent implements OnInit {
     );
 
     }
-   
-
-    // this.submitted = true;
-    // // stop here if form is invalid
-    // if (this.DataForm.invalid) {
-    //   this.DataForm.reset();
-    //   this.DataForm.value.SUCCESS('::submited Succsefuly');
-    // }
-    // else {
-    //    this.AddSoftwer();
-    //   this.onCloase();
-    //   this.DataForm.value.SUCCESS('::submited Succsefuly');
-    // }
   }
 
   onCloase() {
@@ -205,7 +184,6 @@ export class DatachangeComponent implements OnInit {
     this.SoftwerSer.addSoftwerOnServer(this.softwers).subscribe(
       myData => {
         alert("add sucssesful"); this.softwers = myData;
-        
       },
       myErr => { alert(myErr.message); });
   }
@@ -223,7 +201,6 @@ export class DatachangeComponent implements OnInit {
 pic:any
 //תמונה
 handleFileInput(file) {
-  debugger
   this.pic=file
   // this.ComputerWithProgramSer.uploadImage(file[0]).subscribe(
   //   data => {

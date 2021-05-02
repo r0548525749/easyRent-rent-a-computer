@@ -28,19 +28,19 @@ export class ComputerWithProgramService {
   GetComputers(): Observable<Array<ComputerWithProgram>> {
     return this.http.get<Array<ComputerWithProgram>>(this.URL + "/GetComputers");
   }
+  
   removeComputer(idComputer:number): Observable<Array<ComputerWithProgram>> {
     return this.http.delete<Array<ComputerWithProgram>>(this.URL + "/RemoveComputers/"+idComputer);
   }
+
   addComputerDetails(ComputerWithDetails:ComputerDetails):Observable<number>
   {
 
     return this.http.post<number>(this.URL+"/AddComputerDetails",ComputerWithDetails);
   }
+
   addNewComputer(computer:Computer,computerDetails:ComputerDetails,programList:Program[]):Observable<any>
   {
-    debugger
- 
-
    let a={computer,computerDetails,programList}
     return this.http.post<any>(this.URL+"/AddNewComputer",a);
   }
@@ -50,6 +50,10 @@ export class ComputerWithProgramService {
     return this.http.post<any>(this.URL+"/UpdateComputer",computer);
   }
   
+  GetComputerbyid(id:number): Observable<ComputerWithProgram>
+  {
+    return this.http.get<ComputerWithProgram>(this.URL + "/GetComputer/" + id);
+  }
   updateComputerDetails(ComputerWithDetails:ComputerDetails):Observable<number>
   {
     return this.http.post<number>(this.URL+"/UpdateComputerDetails",ComputerWithDetails);

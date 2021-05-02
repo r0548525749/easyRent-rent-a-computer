@@ -30,8 +30,7 @@ export class ProgramChangeComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data: any)
        { }
   
-    ngOnInit() {
-     debugger 
+    ngOnInit() { 
       this.InitDataform();
       if(this.data.from=="Edit")
      { this.program=this.data.editProgram
@@ -80,9 +79,7 @@ this.ProgramSer.updateProgram(this.program).subscribe(
         this.DataForm.reset();
       }
       else {
-        debugger
         this.AddProgram();
-       
       }
     }
     

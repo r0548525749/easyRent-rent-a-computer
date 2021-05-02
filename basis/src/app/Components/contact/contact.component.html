@@ -1,48 +1,4 @@
 <router-outlet></router-outlet>
-<!-- <div class="example-container">
-    <mat-form-field appearance="fill">
-        <mat-label>Input Your Name</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-        <mat-label>Telephone</mat-label>
-        <span matPrefix>+1 &nbsp;</span>
-        <input type="tel" matInput placeholder="555-555-1234">
-        <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <br>
-    <div class="md-form md-outline">
-        <textarea type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
-        <label for="form75">Material textarea</label>
-    </div> -->
-<!-- <mat-form-field appearance="fill">
-        <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
-    </mat-form-field> -->
-<!-- <br>
-    <mat-form-field appearance="fill">
-        <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" />
-        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
-         <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div> -->
-<!-- </mat-form-field> -->
-<!-- <button mat-button>Send</button>
-</div>
-<label id="example-radio-group-label">Pick your favorite cartoon</label>
-<mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="favoriteCartoon" [formControl]="cartoonControl">
-    <mat-radio-button class="radio-button" *ngFor="let cartoon of cartoons" [value]="cartoon">
-        {{ cartoon }}
-    </mat-radio-button>
-</mat-radio-group>
-<mat-error *ngIf="cartoonControl.hasError('required')">Please choose a cartoon</mat-error>
-<div>Your favorite cartoon is: <b>{{ favoriteCartoon }}</b></div> -->
-<!--Material textarea-->
 <div class="container" style="text-align: right;">
     <!-- [formGroup]="reportForm"  -->
     <form class="text-center border border-light p-5" action="#!" (ngSubmit)="onSubmit()">
@@ -77,13 +33,7 @@
         <div class="form-group">
             <textarea class="form-control rounded-0" formControlName="complain" id="exampleFormControlTextarea2" rows="3" placeholder="פרטי ההודעה"></textarea>
         </div>
-
-        <!-- Copy -->
-        <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-            <label class="custom-control-label" for="defaultContactFormCopy">שלח לי עותק של הודעה זו</label>
-        </div>
-
+        <br>
         <!-- Send button -->
         <button class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" type="submit">שלח</button>
 

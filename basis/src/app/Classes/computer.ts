@@ -4,6 +4,9 @@ export class Computer
     Discription:string;
     ProudactKindId:number;
     ProductDetailsId:number;
+    public PriceDay:number;
+    public PriceHour:number;
+
 }
 export class ComputerKind
 {

@@ -16,13 +16,16 @@ export class AppComponent implements OnInit ,DoCheck{
   title = 'g';
   connected: boolean = false;
 
-  constructor(private toastr: ToastrService, private customerSer: CustomeresService, private CompanySer:CompanyService,
+  constructor(private toastr: ToastrService, private customerSer: CustomeresService,
+     private CompanySer:CompanyService,
     private TypeSer:TypeCompuetService,) {
-    debugger
     this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
- 
+
+  // showResponse(event) {
+  //     this.messageService.add({severity:'info', summary:'Succees', detail: 'User Responded', sticky: true});
+  // }
 
   ngDoCheck()
   {
@@ -60,7 +63,6 @@ ngOnInit(): void {
 
 // createListDate() {
 //   this.ListStatusDate=new Array();
-//   debugger
 //   let y=1
 //   this.ListStatusDate.push(new statusDate(this.ListDate[0].fromDate, 3))
 //   let ezerDate = this.ListDate[0].fromDate

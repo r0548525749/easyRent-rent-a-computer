@@ -10,8 +10,11 @@ import { LogoComponent } from 'ng-uikit-pro-standard';
 import { Order } from 'src/app/Classes/Order';
 import { CustomeresService } from 'src/app/Services/customeres.service';
 import * as moment from 'moment';
-
-
+import { listJewishDate } from 'src/app/Classes/JewishDate';
+import { ComputerWithProgramService } from 'src/app/Services/computer-with-program.service';
+import { listErevChag } from 'src/app/Classes/JewishDate';
+import { Store } from 'src/app/Classes/store';
+import { StoreService } from 'src/app/Services/store.service';
 @Component({
   selector: 'app-date-and-time-popup',
   templateUrl: './date-and-time-popup.component.html',
@@ -33,18 +36,23 @@ export class DateAndTimePopupComponent implements OnInit {
   endtime: Time;
   aa: string[]
   range: FormGroup;
+  storeList: Array<Store>
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private customerSer: CustomeresService,
     private orderSer: OrderService,
+    private computerSer: ComputerWithProgramService,
     public matdialog: MatDialogRef<DatachangeComponent>,
     private fb: FormBuilder,
+    private storeser: StoreService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
   selectedDate: any
   ngOnInit() {
     this.initForm();
+    this.Initstore();
     this.listStartHour = new Array();
     this.listEndHour = new Array();
     this.startHours = new Array();
@@ -56,11 +64,21 @@ export class DateAndTimePopupComponent implements OnInit {
       this.listStartHour.push(new hourDay(i, false))
       this.listEndHour.push(new hourDay(i, false))
     }
-   // this.startDate = new Date(this.data.startDate)
+    // this.startDate = new Date(this.data.startDate)
   }
 
+  Initstore() {
+    this.activatedRoute.params.subscribe(
+      myParam => {
+        this.storeser.GetStore().subscribe(
+          myData => {
+            this.storeList = myData;
+          },
+          myErr => { alert(myErr.message); });
+      }
+    )
+  }
   initForm() {
-    debugger
     this.range = this.fb.group({
       startDate: [new Date(this.data.startDate)],
       endDate: [new Date(this.data.endDate)]
@@ -100,10 +118,44 @@ export class DateAndTimePopupComponent implements OnInit {
     h.push(new selectHour("20:00", 20))
 
   }
+  fillShortHours(h) {
+    h.push(new selectHour("08:00", 8))
+    h.push(new selectHour("09:00", 9))
+    h.push(new selectHour("10:00", 10))
+    h.push(new selectHour("11:00", 11))
+    h.push(new selectHour("12:00", 12))
+
+  }
   currentOrder: Order;
   CheckDate1() {
-    debugger
     this.currentOrder = new Order(0, this.range.get('startDate').value, this.range.get('endDate').value, this.data.comp.Id, 152, 126, "16:00:00", "16:00:00", this.customerSer.CurrentCustomer.Id);
+    let payment = 0;
+    let ezerDate = new Date();
+    let comp = this.computerSer.list.find(c => c.Id == this.currentOrder.ProudactId);
+    if (new Date(this.currentOrder.FromDate).getDate() == new Date(this.currentOrder.ToDate).getDate() && new Date(this.currentOrder.FromDate).getMonth() == new Date(this.currentOrder.ToDate).getMonth() && new Date(this.currentOrder.FromDate).getFullYear() == new Date(this.currentOrder.ToDate).getFullYear()) {
+      payment = (new Date(this.currentOrder.ToDate).getHours() - new Date(this.currentOrder.FromDate).getHours()) * this.computerSer.list.find(c => c.Id == this.currentOrder.ProudactId).PriceDay;
+    }
+    else {
+      let x = listErevChag.find(d => new Date(d.date) == new Date(this.currentOrder.FromDate))
+      if (new Date(this.currentOrder.FromDate).getDate() == 5 || x != null)
+        payment = (12 - new Date(this.currentOrder.FromDate).getHours()) * comp.PriceHour;
+      else
+        payment = (20 - new Date(this.currentOrder.FromDate).getHours()) * comp.PriceHour;
+      ezerDate = new Date(this.currentOrder.FromDate)
+      ezerDate.setDate(ezerDate.getDate() + 1)
+      while ((new Date(ezerDate).getDate() != new Date(this.currentOrder.ToDate).getDate()) || (new Date(ezerDate).getMonth() != new Date(this.currentOrder.ToDate).getMonth()) || (new Date(ezerDate).getFullYear() != new Date(this.currentOrder.ToDate).getFullYear())) {
+        payment += comp.PriceDay
+        ezerDate = new Date(ezerDate);
+        ezerDate.setDate(ezerDate.getDate() + 1)
+
+      }
+
+      if (new Date(this.currentOrder.ToDate).getDate() == 5 || x != null)
+        payment += (12 - new Date(this.currentOrder.ToDate).getHours()) * comp.PriceHour;
+      else
+        payment += (20 - new Date(this.currentOrder.ToDate).getHours()) * comp.PriceHour;
+    }
+    alert(payment)
     this.orderSer.AddOrders(this.currentOrder).subscribe(myData => {
       this.onCloase()
     }, err => { });
@@ -124,18 +176,36 @@ export class DateAndTimePopupComponent implements OnInit {
   }
   showErrMsg: boolean = false;
   errMsg: string
+  stopHour: number
   checkStartDate(st: any) {
-    debugger
     this.showErrMsg = false;
     this.startHours = new Array();
-    this.fillHours(this.startHours)
+    let x = listErevChag.find(d => d.date.getDate() == new Date(this.startDate).getDate() && d.date.getMonth() == new Date(this.startDate).getMonth() && d.date.getFullYear() == new Date(this.startDate).getFullYear())
+    if (new Date(this.startDate).getDay() == 5 || x != null) {
+      this.fillShortHours(this.startHours)
+      this.stopHour = 12
+    }
+    else {
+      this.fillHours(this.startHours)
+      this.stopHour = 20
+    }
     let to = new Date();
+    if (new Date(this.startDate).getDay() == 6 || null != listJewishDate.find(d => d.date.getDate() == new Date(this.startDate).getDate() && d.date.getMonth() == new Date(this.startDate).getMonth() && d.date.getFullYear() == new Date(this.startDate).getFullYear())) {
+      this.range.get('endDate').reset();
+      st.focus();
+      this.errMsg = "תאריך לא יכול להיות בשבת או חג"
+      this.showErrMsg = true
+      return
+    }
     if (new Date(this.startDate).setHours(0) < new Date(to).setHours(0, 0, 0, 0)) {
       this.range.get('startDate').reset();
       st.focus();
       this.errMsg = "תאריך לא יכול להיות קטן מהיום"
       this.showErrMsg = true
     }
+    debugger
+    if (new Date(this.startDate).getDate() == new Date().getDate() && new Date(this.startDate).getMonth() == new Date().getMonth() && new Date(this.startDate).getFullYear() == new Date().getFullYear())
+  this.startHours = this.startHours.filter(f => f.numHour > new Date().getHours())
     let chD = this.data.comp.ListStatus.find(c => (new Date(c.date).getDate() == this.startDate.getDate() && new Date(c.date).getMonth() == this.startDate.getMonth() && new Date(c.date).getFullYear() == this.startDate.getFullYear()))
     if (chD != null) {
       if (chD.status == 3) {
@@ -162,7 +232,7 @@ export class DateAndTimePopupComponent implements OnInit {
             }
             else {
               if (new Date(listDate[i].FromDate).getDate() == this.startDate.getDate() && new Date(listDate[i].FromDate).getMonth() == this.startDate.getMonth() && new Date(listDate[i].FromDate).getFullYear() == this.startDate.getFullYear()) {
-                for (let j = new Date(listDate[i].FromDate).getHours(); j <= 20; j++)
+                for (let j = new Date(listDate[i].FromDate).getHours(); j <= this.stopHour; j++)
                   this.listStartHour[this.listStartHour.findIndex(h1 => h1.hour == j)].status = true;
                 //מהFROMDATE עד 20 בערב
               }
@@ -176,13 +246,28 @@ export class DateAndTimePopupComponent implements OnInit {
       for (let j = 0; j < this.listStartHour.length; j++)
         if (this.listStartHour[j].status == true)
           this.startHours = this.startHours.filter(f => f.numHour != this.listStartHour[j].hour)
+    
     }
   }
   today: Date;
   checkEndDate(eh: any) {
-    debugger
     this.endHours = new Array();
-    this.fillHours(this.endHours)
+    let x = listErevChag.find(d => d.date.getDate() == new Date(this.startDate).getDate() && d.date.getMonth() == new Date(this.startDate).getMonth() && d.date.getFullYear() == new Date(this.startDate).getFullYear())
+    if (new Date(this.endDate).getDay() == 5 || x != null) {
+      this.fillShortHours(this.endHours)
+      this.stopHour = 12
+    }
+    else {
+      this.fillHours(this.endHours)
+      this.stopHour = 20
+    }
+    if (new Date(this.endDate).getDay() == 6 || null != listJewishDate.find(d => d.date.getDate() == new Date(this.endDate).getDate() && d.date.getMonth() == new Date(this.endDate).getMonth() && d.date.getFullYear() == new Date(this.endDate).getFullYear())) {
+      this.range.get('endDate').reset();
+      eh.focus();
+      this.errMsg = "תאריך לא יכול להיות בשבת או חג"
+      this.showErrMsg = true
+      return
+    }
     if (this.startDate > this.endDate) {
       this.range.get('endDate').reset();
       eh.focus();
@@ -223,12 +308,16 @@ export class DateAndTimePopupComponent implements OnInit {
             }
             else {
               if (new Date(listDate[i].FromDate).getDate() == this.startDate.getDate() && new Date(listDate[i].FromDate).getMonth() == this.startDate.getMonth() && new Date(listDate[i].FromDate).getFullYear() == this.startDate.getFullYear()) {
-                for (let j = new Date(listDate[i].FromDate).getHours(); j <= 20; j++)
+                for (let j = new Date(listDate[i].FromDate).getHours(); j <= this.stopHour; j++)
                   this.listEndHour[this.listEndHour.findIndex(h1 => h1.hour == j)].status = true;
                 //מהFROMDATE עד 20 בערב
               }
               else {
-                for (let j1 = 8; j1 < new Date(listDate[i].ToDate).getHours(); j1++) { this.listEndHour[this.listEndHour.findIndex(h1 => h1.hour == j1)].status = true; }
+                if (new Date(listDate[i].FromDate).getDate() == this.endDate.getDate() && new Date(listDate[i].FromDate).getMonth() == this.endDate.getMonth() && new Date(listDate[i].FromDate).getFullYear() == this.endDate.getFullYear()) {
+                  for (let j1 = new Date(listDate[i].FromDate).getHours(); j1 <= this.stopHour; j1++) { this.listEndHour[this.listEndHour.findIndex(h1 => h1.hour == j1)].status = true; }
+                }
+                else
+                  for (let j1 = 8; j1 < new Date(listDate[i].ToDate).getHours(); j1++) { this.listEndHour[this.listEndHour.findIndex(h1 => h1.hour == j1)].status = true; }
                 //מ8 בבוקר עד TODATE
               }
             }
@@ -241,9 +330,16 @@ export class DateAndTimePopupComponent implements OnInit {
   }
   sh: number
   checkstartHour(event) {
-    debugger
     this.endHours = new Array()
-    this.fillHours(this.endHours)
+    let x = listErevChag.find(d => d.date.getDate() == new Date(this.startDate).getDate() && d.date.getMonth() == new Date(this.startDate).getMonth() && d.date.getFullYear() == new Date(this.startDate).getFullYear())
+    if (new Date(this.endDate).getDay() == 5 || x != null) {
+      this.fillShortHours(this.endHours)
+
+    }
+    else {
+      this.fillHours(this.endHours)
+
+    }
     new Date(this.startDate).setHours(0)
     if (new Date(this.startDate).getDate() == new Date(this.endDate).getDate()) {
       this.endHours = this.endHours.filter(f => f.numHour > event.value)
@@ -263,7 +359,7 @@ export class DateAndTimePopupComponent implements OnInit {
   }
   eh1: number;
   checkendtHour(event) {
-   this.endDate.setHours(event.value + 2);
+    this.endDate.setHours(event.value + 2);
     console.log("endDate", this.endDate);
 
   }

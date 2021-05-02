@@ -96,7 +96,7 @@ export class ExistingcostomerComponent implements OnInit {
     if(this.registerForm.invalid)
     return;
     var c = new Customer();
-    debugger
+
     if(this.registerForm.value["email"]=="" || this.registerForm.value["password"]==""){
           alert("חסר שם משתמש או סיסמה.");
            return;

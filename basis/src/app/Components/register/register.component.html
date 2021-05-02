@@ -1,9 +1,9 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>‏
 <router-outlet></router-outlet>
 <mat-horizontal-stepper [linear]="true" #stepper style="background-color: rgb(232, 232, 235);">
-    <mat-step [stepControl]="engineerForm">
+    <mat-step>
         <div class="container" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
-            <form [formGroup]="engineerForm">
+            <!-- <form [formGroup]="engineerForm">
                 <ng-template matStepLabel style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">פרטי הרשמה</ng-template>
                 <h3>האם אתה מעונין בביטוח תמידי?</h3>
                 <mat-radio-group formControlName="insurance" aria-label="Select an option" class="mat-radio-button">
@@ -19,20 +19,41 @@
                 </mat-radio-group>
                 <div class="card-container"></div>
                 <div>
-                    <div style="font-family: Calibri;;color: grey;text-align: right;">
+                    <div style="font-family: Calibri;color: grey;text-align: right;">
                         <button mat-button matStepperNext style="font-size:24px">הבא <i class="fa fa-hand-o-left"></i></button>
                     </div>
                 </div>
-            </form>
+            </form> -->
+            <ng-template matStepLabel style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">בית</ng-template>
+            <div class="container " style="font-family: Calibri;">
+                <div class="container" style="text-align: center;">
+
+                    <div class="jumbotron " style="color: #FF6600;">
+                        <h1 style="font-family: Calibri; color:#FF6600;font-weight: bold;">ברוכים הבאים לeasyRent- משתמש חדש</h1>
+                        <p>לקוח יקר בחלק הזה תוכל להירשם לאתר </p>
+                        <p class="lead ">בסרגל המוצג לעיל תוכל לבצע פעולות שונות</p>
+                        <p class="lead "> בלחיצה על הכפתור יש להכניס פרטים אישים ולבסוף ישלח מייל עם השם ומשתמש בשביל שימוש חוזר באתר </p>
+                        <p>
+                            במידה ונוצרו בעיות כלשהן נא צור קשר עם מנהלי האתר
+                            <br/> <label style="font-weight: bold;">  למספר: 0548525749</label>
+                            <br/> <label style="font-weight: bold;">או במייל: easyrent71@GMAIL.COM  </label>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <button mat-button matStepperNext style="font-size:24px">הבא <i class="fa fa-hand-o-left"></i></button>
+
         </div>
     </mat-step>
+
     <mat-step [stepControl]="registerForm">
 
         <div class="container" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
             <ng-template matStepLabel style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">פרטים אישים</ng-template>
             <h3 class="card-header">לקוח חדש</h3>
             <div class="card-body" style="font-family: Calibri;font-weight: bold;color: grey;font-weight: bold;text-align: right;">
-                <form class="col-sm-12 form-content" *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <form class="col-sm-12 form-content" autocomplete="off" *ngIf="registerForm,customers" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
                         <div class="form-group col-5">
                             <label>שם פרטי</label>
@@ -51,35 +72,18 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group col-5">
+                        <label> מייל </label>
                         <input type="text" formControlName="email" class="form-control" [(ngModel)]="customers.Gmail" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                             <div *ngIf="f.email.errors.required">Email is required</div>
                             <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-5">
-                            <label>טלפון מס 1</label>
-                            <input type="text" formControlName="telephon1" class="form-control" [(ngModel)]="customers.TelephonNo1" [ngClass]="{ 'is-invalid': submitted && f.telephon1.errors }" />
-                            <div *ngIf="submitted && f.telephon1.errors" class="invalid-feedback">
-                                <div *ngIf="f.telephon1.errors.required">Telephon1 is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-5">
-                            <label>טלפון מספר 2</label>
-                            <input type="text" formControlName="telephon2" class="form-control" [(ngModel)]="customers.TelephonNo2" [ngClass]="{ 'is-invalid': submitted && f.telephon2.errors }" />
-                            <div *ngIf="submitted && f.telephon2.errors" class="invalid-feedback">
-                                <div *ngIf="f.telephon2.errors.required">Telephon2 is required</div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-row">
                         <div class="form-group col-5">
                             <label>סיסמה</label>
-                            <input type="password" formControlName="password" class="form-control" [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <input type="password" formControlName="password" class="form-control" autocomplete="off" [(ngModel)]="customers.Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                         </button>
@@ -95,6 +99,27 @@
                             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                                 <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                                 <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-5">
+                                <label>טלפון מס 1</label>
+                                <input type="text" formControlName="telephon1" class="form-control" [(ngModel)]="customers.TelephonNo1" [ngClass]="{ 'is-invalid': submitted && f.telephon1.errors }" />
+                                <div *ngIf="submitted && f.telephon1.errors" class="invalid-feedback">
+                                    <div *ngIf="f.telephon1.errors.required">Telephon1 is required</div>
+                                    <div *ngIf="f.telephon1.errors.pattern">Telephon2 is pattern</div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-5">
+                                <label>טלפון מספר 2</label>
+                                <input type="text" formControlName="telephon2" class="form-control" autocomplete="off" [(ngModel)]="customers.TelephonNo2" [ngClass]="{ 'is-invalid': submitted && f.telephon2.errors }" />
+                                <div *ngIf="submitted && f.telephon2.errors" class="invalid-feedback">
+                                    <div *ngIf="f.telephon2.errors.required">Telephon2 is required</div>
+                                    <div *ngIf="f.telephon2.errors.pattern">Telephon2 is pattern</div>
+
+                                </div>
                             </div>
                         </div>
                     </div>

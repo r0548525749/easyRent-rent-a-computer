@@ -77,7 +77,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HomeComponent } from './Components/home/home.component';
 import { CarouselModule, WavesModule } from 'ng-uikit-pro-standard';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component'
+import { ForgetPasswordComponent } from './Components/forget-password/forget-password.component'
 
 const appRoutes: Routes = [
   { path: '', redirectTo: "existing", pathMatch: "full" },

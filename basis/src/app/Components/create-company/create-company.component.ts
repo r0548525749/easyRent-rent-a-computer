@@ -37,8 +37,6 @@ export class CreateComanyComponent implements OnInit {
    if(this.data.from=="Edit")
    {
      this.from=1;
-     debugger
-     
     this.company=this.data.editCompany;
    }
    else
@@ -84,14 +82,11 @@ export class CreateComanyComponent implements OnInit {
       this.DataForm.reset();
     }
     else {
-      debugger
-      this.AddCompany();
-     
+      this.AddCompany();     
     }
   }
   
   onCloase() {
-  debugger
     this.submitted = false;
     this.matdialog.close();
   }

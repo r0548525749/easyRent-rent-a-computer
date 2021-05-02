@@ -71,3 +71,16 @@
        background-color: #FF6600;
        color: #fff;
    }
+   
+   .jumbotron {
+       padding: 2rem 1rem;
+       margin-bottom: 2rem;
+       background-color: #efeeee;
+       border-radius: 0.3rem;
+       border-style: solid;
+       border-color: #FF6600;
+   }
+   
+   .lead {
+       color: grey;
+   }

@@ -18,7 +18,6 @@ export class TypeCompuetService {
   create() {
     this.GetTypes().subscribe(
       myData => {
-        debugger
         //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת
         this.list = myData;
       },

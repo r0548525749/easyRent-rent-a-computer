@@ -27,6 +27,9 @@ import { DateAndTimePopupComponent } from '../date-and-time-popup/date-and-time-
 import { R3DirectiveMetadataFacade } from '@angular/compiler/src/compiler_facade_interface';
 import { statusDate } from 'src/app/Classes/ststusDate';
 import { Order } from 'src/app/Classes/Order';
+import { listJewishDate } from 'src/app/Classes/JewishDate';
+import { listErevChag } from 'src/app/Classes/JewishDate';
+
 // import { networkInterfaces } from 'os';
 // import { DateAdapter } from '@angular/material/core';
 
@@ -92,8 +95,8 @@ export class ViewComputerComponent implements OnInit {
   form: FormGroup;
   events: string[] = [];
   opened: boolean;
-  showFilter:boolean=false;
-  computerWithProgramD:Array<ComputerWithProgramD> = new Array();
+  showFilter: boolean = false;
+  computerWithProgramD: Array<ComputerWithProgramD> = new Array();
   // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -109,11 +112,11 @@ export class ViewComputerComponent implements OnInit {
     private formBuilder: FormBuilder,
     private orderSer: OrderService) { }
 
-  
+
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  getData:boolean;
+  getData: boolean;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -125,10 +128,10 @@ export class ViewComputerComponent implements OnInit {
     // this.fromDate=new FormControl();
     // this.toDate=new FormControl();
     this.initSer();
-this.getData=true;
+    this.getData = true;
     this.softwareSer.GetSoftwares().subscribe(
       myData => {
-        this.getData=false;
+        this.getData = false;
 
         //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת
         this.softwareList = myData;
@@ -170,17 +173,15 @@ this.getData=true;
         console.log(myData)
         //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת
         this.computerWithProgramList = myData;
-
+        this.computerWithProgramSer.list=myData;
         this.computerWithProgramListFilter = myData;
-        var i =0; 
+        var i = 0;
         this.colorCalander()
-       
-        this.computerWithProgramListFilter .forEach(element => {  
-          this.computerWithProgramD.push(new ComputerWithProgramD(element, false) )
-          
-        });
 
-        
+        this.computerWithProgramListFilter.forEach(element => {
+          this.computerWithProgramD.push(new ComputerWithProgramD(element, false))
+
+        });
         this.memmoryList = this.getMemmory();
         this.typeList = this.getType();
         this.processList = this.getProcess();
@@ -189,8 +190,6 @@ this.getData=true;
         this.screanSizeList = this.getScreanSize();
       },
       myErr => { console.log(myErr.message); });
-
-
   }
 
   initForm() {
@@ -246,29 +245,31 @@ this.getData=true;
   onSelectAll(items: any) {
     console.log(items);
   }
-   date1:statusDate
+  date1: statusDate
   dateClass(c: ComputerWithProgram) {
-   
-      return (date: Date): MatCalendarCellCssClasses =>{
-       {  
-         if(c.ListStatus!=null && c.ListStatus.length>0)
-         {
-          this.date1= c.ListStatus.find(e=>date.getDate()== new Date(e.date).getDate() && date.getMonth()==new Date(e.date).getMonth() && date.getFullYear()==new Date(e.date).getFullYear())
-          if(this.date1!=null)
-          { 
-            if ( this.date1.status==2) {
+
+    return (date: Date): MatCalendarCellCssClasses => {
+      {
+        if(new Date(date).getDay()==6 ||null!=listJewishDate.find(d=>d.date.getDate()==new Date(date).getDate() &&d.date.getMonth()==new Date(date).getMonth() && d.date.getFullYear()==new Date(date).getFullYear() ))
+        {
+          return 'dateClaasDisable';
+        }
+        if (c.ListStatus != null && c.ListStatus.length > 0) {
+          this.date1 = c.ListStatus.find(e => date.getDate() == new Date(e.date).getDate() && date.getMonth() == new Date(e.date).getMonth() && date.getFullYear() == new Date(e.date).getFullYear())
+          if (this.date1 != null) {
+            if (this.date1.status == 2) {
               return 'dateClaas2';
-         }
-         else if (this.date1.status==3) {
-           return 'dateClaas1';
-           } 
-          }
+            }
+            else if (this.date1.status == 3) {
+              return 'dateClaas1';
+            }
           }
         }
       }
-      return
     }
-  
+    return
+  }
+
   // dateClass = (d: Date): MatCalendarCellCssClasses => {
   //   const date = d.getDate();
   //   // Highlight the 1st and 20th day of each month.
@@ -353,60 +354,55 @@ this.getData=true;
         }
       }
     });
-  } 
-    date2:statusDate;  
-  dateFilter (c:any)
-  {
-    debugger
-    return(date: Date) =>
-       {     
-        if(c.ListStatus!=null && c.ListStatus.length>0)
-        { this.date2= c.ListStatus.find(e=>date.getDate()== new Date(e.date).getDate() && date.getMonth()==new Date(e.date).getMonth() && date.getFullYear()==new Date(e.date).getFullYear())
-           if(this.date2!=null)
-           { if ( this.date2.status==3) {          
-             return 0;
-       }
   }
-  
-  }
-  return 1;
- }
- }
+  date2: statusDate;
+  dateFilter(c: any) {
+    return (date: Date) => {
+      if (c.ListStatus != null && c.ListStatus.length > 0) {
+        this.date2 = c.ListStatus.find(e => date.getDate() == new Date(e.date).getDate() && date.getMonth() == new Date(e.date).getMonth() && date.getFullYear() == new Date(e.date).getFullYear())
+        if (this.date2 != null) {
+          if (this.date2.status == 3) {
+            return 0;
+          }
+        }
 
-  create(c:any) {  
-   if(this.startDate!=null){
+      }
+      return 1;
+    }
+  }
+
+  create(c: any) {
+    if (this.startDate != null) {
       const DialogConfig = new MatDialogConfig();
       DialogConfig.disableClose = true;
       DialogConfig.autoFocus = true;
       DialogConfig.width = "60%";
-      DialogConfig.data = { name: new Software(),startDate:String,comp:ComputerWithProgram};
-      DialogConfig.data.startDate=this.startDate;
-      this.startDate=null
-      DialogConfig.data.comp=c;
+      DialogConfig.data = { name: new Software(), startDate: String, comp: ComputerWithProgram };
+      DialogConfig.data.startDate = this.startDate;
+      this.startDate = null
+      DialogConfig.data.comp = c;
       const dialogRef = this.dialog.open(DateAndTimePopupComponent, DialogConfig);
       dialogRef.afterClosed().subscribe(result => {
-      this.initSer();
-      console.log(result);
-    });
-   }
+        this.initSer();
+        console.log(result);
+      });
+    }
   }
 
-  startDate:string
-  getDay(event:Date)
-  {
-    this.startDate=event.toDateString(); 
- }
+  startDate: string
+  getDay(event: Date) {
+    this.startDate = event.toDateString();
+  }
 
   //curComp: ComputerWithProgram;
   colorCalander() {
 
-   for(let k=0;k<this.computerWithProgramListFilter.length;k++)
-     if(this.computerWithProgramListFilter[k].OrdersDate!=null && this.computerWithProgramListFilter[k].OrdersDate.length>0)
-      { 
-          this.sortByDueDate(this.computerWithProgramListFilter[k].OrdersDate);
-          this.computerWithProgramListFilter[k].ListStatus=new Array();
-          this.createListDate(this.computerWithProgramListFilter[k].ListStatus,this.computerWithProgramListFilter[k]);
-     }
+    for (let k = 0; k < this.computerWithProgramListFilter.length; k++)
+      if (this.computerWithProgramListFilter[k].OrdersDate != null && this.computerWithProgramListFilter[k].OrdersDate.length > 0) {
+        this.sortByDueDate(this.computerWithProgramListFilter[k].OrdersDate);
+        this.computerWithProgramListFilter[k].ListStatus = new Array();
+        this.createListDate(this.computerWithProgramListFilter[k].ListStatus, this.computerWithProgramListFilter[k]);
+      }
   }
 
   sortByDueDate(myArray: Order[]): void {
@@ -415,9 +411,10 @@ this.getData=true;
       return new Date(a.FromDate).getTime() - new Date(b.FromDate).getTime();
     });
   }
-  
-//  בדיקות תקינות של תאריכים
-  createListDate(ListStatusDate: statusDate[],curComp:ComputerWithProgram) {
+stopHour:number
+sumHours:number;
+  //  בדיקות תקינות של תאריכים
+  createListDate(ListStatusDate: statusDate[], curComp: ComputerWithProgram) {
     let sum = 0;
     ListStatusDate.push(new statusDate(curComp.OrdersDate[0].FromDate, 3))
     let ezerDate = curComp.OrdersDate[0].FromDate
@@ -425,16 +422,24 @@ this.getData=true;
 
       if (sum < 12 && sum != 0)
         ListStatusDate[ListStatusDate.length - 1].status = 2;
-      sum = 0;
-      sum = Math.abs((new Date(0, 0, 0, 20, 0).getHours() + new Date(0, 0, 0, 20, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[0].FromDate).getHours() + new Date(curComp.OrdersDate[0].FromDate).getMinutes() / 60))
+        if(new Date(curComp.OrdersDate[0].FromDate).getDay()==5 || listErevChag.find(d=>new Date(d.date)==new Date(curComp.OrdersDate[0].FromDate)))
+      {  this.stopHour=12;
+        this.sumHours=4
+      }
+        else
+        {  this.stopHour=20;
+          this.sumHours=12
+        }
+      sum = 0;     
+      sum = Math.abs((new Date(0, 0, 0,  this.stopHour, 0).getHours() + new Date(0, 0, 0,  this.stopHour, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[0].FromDate).getHours() + new Date(curComp.OrdersDate[0].FromDate).getMinutes() / 60))
       console.log(sum);
-      if (sum < 12 && sum != 0)
-       ListStatusDate[ListStatusDate.length - 1].status = 2;
+      if (sum < this.sumHours&& sum != 0)
+        ListStatusDate[ListStatusDate.length - 1].status = 2;
       while ((new Date(ezerDate).getDate() != new Date(curComp.OrdersDate[0].ToDate).getDate()) || (new Date(ezerDate).getMonth() != new Date(curComp.OrdersDate[0].ToDate).getMonth()) || (new Date(ezerDate).getFullYear() != new Date(curComp.OrdersDate[0].ToDate).getFullYear())) {
-        
+
         ezerDate = new Date(ezerDate);
         ezerDate.setDate(ezerDate.getDate() + 1)
-       ListStatusDate.push(new statusDate(ezerDate, 3))
+        ListStatusDate.push(new statusDate(ezerDate, 3))
       }
       // if (sum < 12 && sum != 0)
       //  ListStatusDate[this.ListStatusDate.length - 1].status = 2;
@@ -446,56 +451,78 @@ this.getData=true;
       console.log(sum);
     }
     for (let i = 1; i < curComp.OrdersDate.length; i++) {
-      if ((new Date(ListStatusDate[ListStatusDate.length - 1].date).getDate() != new Date(curComp.OrdersDate[i].FromDate).getDate()) || (new Date(ListStatusDate[ListStatusDate.length - 1].date).getMonth() != new Date(curComp.OrdersDate[i].FromDate).getMonth()) || (new Date(ListStatusDate[ListStatusDate.length - 1].date).getFullYear() != new Date(curComp.OrdersDate[i].FromDate).getFullYear())) 
-      {
-       
-        if (sum < 12 && sum != 0)
-         ListStatusDate[ListStatusDate.length - 1].status = 2;
+      if ((new Date(ListStatusDate[ListStatusDate.length - 1].date).getDate() != new Date(curComp.OrdersDate[i].FromDate).getDate()) || (new Date(ListStatusDate[ListStatusDate.length - 1].date).getMonth() != new Date(curComp.OrdersDate[i].FromDate).getMonth()) || (new Date(ListStatusDate[ListStatusDate.length - 1].date).getFullYear() != new Date(curComp.OrdersDate[i].FromDate).getFullYear())) {
+        if(new Date(curComp.OrdersDate[i].FromDate).getDay()==5|| listErevChag.find(d=>new Date(d.date)==new Date(curComp.OrdersDate[0].FromDate)))
+        {  this.stopHour=12;
+          this.sumHours=4
+        }
+          else
+          {  this.stopHour=20;
+            this.sumHours=12
+          }
+        if (sum < this.sumHours && sum != 0)
+          ListStatusDate[ListStatusDate.length - 1].status = 2;
         sum = 0;
-        sum = Math.abs((new Date(0, 0, 0, 20, 0).getHours() + new Date(0, 0, 0, 20, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[i].FromDate).getHours() + new Date(curComp.OrdersDate[i].FromDate).getMinutes() / 60))
+        sum = Math.abs((new Date(0, 0, 0, this.stopHour, 0).getHours() + new Date(0, 0, 0, this.stopHour, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[i].FromDate).getHours() + new Date(curComp.OrdersDate[i].FromDate).getMinutes() / 60))
         console.log(sum);
-       ListStatusDate.push(new statusDate(curComp.OrdersDate[i].FromDate, 3))
+        ListStatusDate.push(new statusDate(curComp.OrdersDate[i].FromDate, 3))
       }
-    
+
       else {
         sum += Math.abs((new Date(curComp.OrdersDate[i].FromDate).getHours() + new Date(curComp.OrdersDate[i].FromDate).getMinutes() / 60) - (new Date(curComp.OrdersDate[i].ToDate).getHours() + new Date(curComp.OrdersDate[i].ToDate).getMinutes() / 60))
         console.log(sum);
       }
 
-        ezerDate = curComp.OrdersDate[i].FromDate
-        if (new Date(ezerDate).getDate() != new Date(curComp.OrdersDate[i].ToDate).getDate() || new Date(ezerDate).getMonth() != new Date(curComp.OrdersDate[i].ToDate).getMonth() || new Date(ezerDate).getFullYear() != new Date(curComp.OrdersDate[i].ToDate).getFullYear()) {
-          {
-            
-            while (new Date(ezerDate).getDate() != new Date(curComp.OrdersDate[i].ToDate).getDate() || new Date(ezerDate).getMonth() != new Date(curComp.OrdersDate[i].ToDate).getMonth() || new Date(ezerDate).getFullYear() != new Date(curComp.OrdersDate[i].ToDate).getFullYear()) {
-              ezerDate = new Date(ezerDate);
-              ezerDate.setDate(ezerDate.getDate() + 1)
-             ListStatusDate.push(new statusDate(ezerDate, 3))
-            }
-           
-            sum = Math.abs((new Date(0, 0, 0, 8, 0).getHours() + new Date(0, 0, 0, 8, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[i].ToDate).getHours() + new Date(curComp.OrdersDate[i].ToDate).getMinutes() / 60))
-            console.log(sum);  
-        }    
-        if (sum < 12 && sum != 0)
-         ListStatusDate[ListStatusDate.length - 1].status = 2;
-      }  
-      if (sum < 12 && sum != 0)
-       ListStatusDate[ListStatusDate.length - 1].status = 2;
-      else
-        if (sum == 12)
-         ListStatusDate[ListStatusDate.length - 1].status = 3;
-    } 
-    if (sum < 12 && sum != 0)
-      ListStatusDate[ListStatusDate.length - 1].status = 2;
-      if (sum == 12)
-         ListStatusDate[ListStatusDate.length - 1].status = 3;
+      ezerDate = curComp.OrdersDate[i].FromDate
+      if(new Date(curComp.OrdersDate[i].FromDate).getDay()==5 || listErevChag.find(d=>new Date(d.date)==new Date(curComp.OrdersDate[0].FromDate)))
+      {  this.stopHour=12;
+        this.sumHours=4
+      }
+        else
+        {  this.stopHour=20;
+          this.sumHours=12
+        }
+      if (new Date(ezerDate).getDate() != new Date(curComp.OrdersDate[i].ToDate).getDate() || new Date(ezerDate).getMonth() != new Date(curComp.OrdersDate[i].ToDate).getMonth() || new Date(ezerDate).getFullYear() != new Date(curComp.OrdersDate[i].ToDate).getFullYear()) {
+        {
 
-    for (let x = 0; x <ListStatusDate.length; x++)
-      console.log(ListStatusDate[x].date, " ",ListStatusDate[x].status);
+          while (new Date(ezerDate).getDate() != new Date(curComp.OrdersDate[i].ToDate).getDate() || new Date(ezerDate).getMonth() != new Date(curComp.OrdersDate[i].ToDate).getMonth() || new Date(ezerDate).getFullYear() != new Date(curComp.OrdersDate[i].ToDate).getFullYear()) {
+            ezerDate = new Date(ezerDate);
+            ezerDate.setDate(ezerDate.getDate() + 1)
+            ListStatusDate.push(new statusDate(ezerDate, 3))
+          }
+
+          sum = Math.abs((new Date(0, 0, 0, 8, 0).getHours() + new Date(0, 0, 0, 8, 0).getMinutes() / 60) - (new Date(curComp.OrdersDate[i].ToDate).getHours() + new Date(curComp.OrdersDate[i].ToDate).getMinutes() / 60))
+          console.log(sum);
+        }
+        if(new Date(curComp.OrdersDate[i].ToDate).getDay()==5||listErevChag.find(d=>new Date(d.date)==new Date(curComp.OrdersDate[0].FromDate)))
+        {  this.stopHour=12;
+          this.sumHours=4
+        }
+          else
+          {  this.stopHour=20;
+            this.sumHours=12
+          }
+        if (sum < this.sumHours && sum != 0)
+          ListStatusDate[ListStatusDate.length - 1].status = 2;
+      }
+      if (sum <this.sumHours && sum != 0)
+        ListStatusDate[ListStatusDate.length - 1].status = 2;
+      else
+        if (sum == this.sumHours)
+          ListStatusDate[ListStatusDate.length - 1].status = 3;
+    }
+    if (sum < this.sumHours && sum != 0)
+      ListStatusDate[ListStatusDate.length - 1].status = 2;
+    if (sum == this.sumHours)
+      ListStatusDate[ListStatusDate.length - 1].status = 3;
+
+    for (let x = 0; x < ListStatusDate.length; x++)
+      console.log(ListStatusDate[x].date, " ", ListStatusDate[x].status);
   }
 }
 
-export class ComputerWithProgramD{
-constructor(
-public  computer:ComputerWithProgram,
-public  date:boolean){}
+export class ComputerWithProgramD {
+  constructor(
+    public computer: ComputerWithProgram,
+    public date: boolean) { }
 }

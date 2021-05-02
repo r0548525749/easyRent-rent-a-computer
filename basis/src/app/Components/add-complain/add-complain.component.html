@@ -1,27 +1,46 @@
 <router-outlet></router-outlet>
 
-<table class="table table-hover">
+<table class="table">
     <thead>
         <tr>
-            <th scope="col">האם טופלה?</th>
-            <th scope="col">התלונה</th>
             <th scope="col">מס לקוח</th>
-            <th scope="col">מס תלונה</th>
+            <th scope="col">מס מחשב</th>
+            <th scope="col">תאריך</th>
+            <th scope="col">פירוט התלונה</th>
+            <th scope="col">פירוט הטיפול</th>
+            <th scope="col">האם טופלה?</th>
             <th scope="col">למחיקת תלונה</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let s of complainList">
-            <!-- <th scope="row">1</th> -->
-            <td>{{s.HasCeared}}</td>
+            <td>{{s.nameCustomer}}</td>
+            <td (mouseover)="viewComp(s.IdComputer)">{{s.IdComputer}}</td>
+            <td>{{s.Date| date}}</td>
             <td>{{s.Complaints}}</td>
-            <td>{{s.IdCustomer}}</td>
-            <td>{{s.IdComplaints}}</td>
-            <td>
-                <div class="example-button-container">
-                    <button mat-mini-fab color="warn" (click)="deletComplain(s.IdComplaints)"><mat-icon>delete</mat-icon></button>
-                </div>
+            <td> <textarea [(ngModel)]="s.ManagerComplain" name="" id="txt" cols="20" rows="5"></textarea>
             </td>
+            <td style="color: #FF6600;">
+                <mat-checkbox [checked]=" s.HasCeared " (click)="cheakButton(s,s.ManagerComplain,s.IdCustomer) "></mat-checkbox>
+                <!-- <mat-checkbox class="example-margin " *ngIf="s.HasCeared " [checked]="true " (click)="cheakButtontrue(s) "></mat-checkbox> -->
+            </td>
+            <td>
+                <div class="example-button-container " style="color: black; ">
+                    <button mat-button [disabled]="!s.HasCeared " (click)="deletComplain(s.IdComplaints) "><mat-icon>delete</mat-icon></button>
+                </div>
+
+            </td>
+
+            <!-- <div class="alert alert-success" role="alert" *ngIf="showErrMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="showErrMsg=!showErrMsg"> 
+            <span aria-hidden="true">&times;</span>
+          </button>
+                <h4 class="alert-heading">{{s.Complaints}}!</h4>
+                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                <hr>
+                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+
+            </div> -->
         </tr>
 
     </tbody>

@@ -31,7 +31,11 @@ export class ComplaintsService {
     return this.http.post<Complaint>(this.URL + "/PostComplaint", fl);
   }
 
-  deleteComplain(id:number) {
+  updateComplain(id: number, cheaked: boolean,comment:string,idCustomer:number): Observable<Array<boolean>> {
+    return this.http.get<Array<boolean>>(this.URL + "/UpdateHasTakenComplain" + "/" + id + "/" + cheaked+"/"+comment+"/"+idCustomer);
+  }
+
+  deleteComplain(id: number) {
     return this.http.delete(this.URL + "/DeleteComplaintById/" + id);
   }
 

@@ -56,6 +56,14 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+/* disable a date */
+
+.dateClaasDisable {
+    opacity: .5;
+    pointer-events: none;
+}
+
 .dateClaas1 {
     background-color: red;
 }

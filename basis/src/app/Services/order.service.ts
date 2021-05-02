@@ -8,7 +8,6 @@ import { ComputerWithProgram } from '../Classes/computer-with-program';
   providedIn: 'root'
 })
 export class OrderService {
-
   URL: string = "http://localhost:53601/api/Orders";
   list: Array<Order>;
   constructor(private http: HttpClient) {
@@ -37,7 +36,6 @@ export class OrderService {
   }
 
   AddOrders(fl: Order): Observable<Order> {
-    debugger
     return this.http.post<Order>(this.URL + "/PostOrder", fl);
   }
 
@@ -50,7 +48,6 @@ export class OrderService {
   //   return this.http.get<boolean>(this.URL + "/ChackOorderDateForComputer?computerId="+computerId+"&dateFrom=" + dateFrom+"&dateTo="+dateTo);
 
   // }
-
   chackOorderDateForComputer(computerId: number, dateFrom: string, dateTo: string): Observable<boolean> {
     return this.http.get<boolean>(this.URL + "/ChackOorderDateForComputer?computerId=" + computerId + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo);
   }

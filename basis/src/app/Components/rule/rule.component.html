@@ -1,32 +1,27 @@
 <router-outlet></router-outlet>
 
-<form style="text-align: center;">
-    <table>
+<form class="table">
+    <table class="table">
         <tr>
-            <th mat-sort-header="IdRule">IdRule </th>
-            <th mat-sort-header="Description">Description </th>
-            <th mat-sort-header="Price">Price </th>
-            <th mat-sort-header="Price">add </th>
+            <th>תאור </th>
+            <th>מחיר </th>
+            <th>הוספה </th>
         </tr>
         <tr *ngFor="let s of rule">
-            <td>{{s.IdRule}}</td>
             <td>{{s.Description}}</td>
             <td>{{s.Price}}</td>
             <td>
                 <mat-checkbox name="cheackbox" required (change)="click(s.Price)"></mat-checkbox>
-                <!-- <mat-radio-button [value]="true" required>כן</mat-radio-button> -->
             </td>
             <td>
         </tr>
     </table>
-
     <div class="form-row">
         <br>
         <div class="form-group col">
             <!-- <button type="submit" class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" ">לאישור</button> <br><br> -->
             <button (click)="showSum()" class="btn btn-primary mr-1" style="background-color: #FF6600;border-color: #333333;height:1cm;"> חשב
         </button>
-            <!-- <a href="#" (click)="check1()" type="submit" mdbBtn class="myButton">התחבר</a> -->
         </div>
     </div>
 </form>

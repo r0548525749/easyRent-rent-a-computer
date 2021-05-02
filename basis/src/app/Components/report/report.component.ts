@@ -70,28 +70,5 @@ export class ReportComponent implements OnInit {
       }
     )       
     }
-    
-  
-  //   this.ReportSer.GetComputersUsageReport().subscribe(
-  //     myData => {
-  //       debugger
-  //       this.ReportSer.reports= myData;
-  //       this.barChartLabels=Object.keys(this.ReportSer.reports);
-  //       this.barChartData.push({data:Object.values(this.ReportSer.reports),label:"computers usage",backgroundColor: "#3e95cd", })
-  //     debugger},
-  //     myErr => { console.log(myErr.message); });
-  // }
-  //)
-
-
 }
   
-
-// this.ReportSer.GetCountMounthLendReport().subscribe( myData=>
-//   {
-
-    // this.ReportSer.reports= myData;
-    // this.barChartLabels=Object.keys(this.ReportSer.reports);
-    // this.barChartData.push({data:Object.values(this.ReportSer.reports),label:"computers usage",backgroundColor: "#3e95cd", })
-
-// },)

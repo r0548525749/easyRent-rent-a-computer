@@ -1,7 +1,7 @@
 <div class="card m-3" style="direction: ltr;">
     <h3 class="card-header" style="background-color:#FF6600;color: aliceblue;font-family: cursive;font-size: x-large;">
         <button mat-button matSuffix mat-icon-button (click)="onCloase()" aria-label="Clear"><mat-icon>clear</mat-icon></button>
-        <div style="text-align: right;"> {{data.from}} מחשב</div>
+        <div style="text-align: right;"> מחשב {{data.from}} </div>
     </h3>
 
     <div class="card-body">
@@ -128,11 +128,24 @@
                 </mat-form-field>
 
                 <div class="form-group">
-                    <img src="{{this.computerDetails.Picture}}">
+                    <!-- <img src="{{this.computerDetails.Picture}}"> -->
                     <label for="pic" class="control-lable">תמונה:</label><br>
                     <input type="file" name="pic" id="file-input" class="form-control" #Image [ngModel]="this.computerDetails.Picture" (change)="handleFileInput($event.target.files)" placeholder="בחר תמונה" />
                 </div>
-
+                <mat-form-field class="example-full-width">
+                    <mat-label>מחיר לשעה</mat-label>
+                    <input type="text" matInput name="priceHour" [(ngModel)]="this.computer.PriceHour">
+                    <i class="fa fa-shekel"></i>
+                </mat-form-field>
+                <div class="form-group has-search">
+                    <span class="fa fa-shekel"></span>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>מחיר ליום</mat-label>
+                    <input type="text" matInput name="priceDay" [(ngModel)]="this.computer.PriceDay">
+                    <i class="fa fa-shekel"></i>
+                </mat-form-field>
                 <mat-form-field>
                     <mat-label>תוכנות</mat-label>
                     <mat-select [formControl]="toppings" multiple (selectionChange)="filterByProgramName($event.value)">

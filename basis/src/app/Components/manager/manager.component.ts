@@ -80,6 +80,7 @@ dataSource2 = null;
     this.dataSource = new MatTableDataSource<ComputerWithProgram>(this.computerWithProgramList);
     this.dataSource1 = new MatTableDataSource<Program>(this.ProgramList);
     this.dataSource2 = new MatTableDataSource<Company>(this.CompanyList);
+    
   }
   step = 0;
 
@@ -99,7 +100,6 @@ dataSource2 = null;
   InitProgram(): void {
     this.programSer.GetPrograms().subscribe(
       myData => {
-        debugger
         //הפרמטר המתקבל הוא הנתונים שחזרו מהשרת
         this.ProgramList = myData;
         this.dataSource1 = new MatTableDataSource<Program>(myData);
@@ -153,7 +153,6 @@ dataSource2 = null;
   }
  
   createCompany() {
-    debugger
     const DialogConfig = new MatDialogConfig();
     DialogConfig.disableClose = true;
     DialogConfig.autoFocus = true;
@@ -187,13 +186,11 @@ dataSource2 = null;
     DialogConfig.data.from = "new";
     const dialogRef = this.dialog.open(ProgramChangeComponent, DialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      debugger
       this.ProgramList = this.programSer.list;
       this.InitProgram()
     });
   }
   OnEditProgram(p: Program) {
-    debugger
     const DialogConfig = new MatDialogConfig();
     DialogConfig.disableClose = true;
     DialogConfig.autoFocus = true;
@@ -210,7 +207,6 @@ dataSource2 = null;
   }
   OnEditComapny(c:Company)
   {
-    debugger
     const DialogConfig = new MatDialogConfig();
     DialogConfig.disableClose = true;
     DialogConfig.autoFocus = true;
@@ -221,7 +217,6 @@ dataSource2 = null;
 
     const dialogRef = this.dialog.open(CreateComanyComponent, DialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      debugger
       this.companySer.list=result
       this.CompanyList = this.companySer.list;
       this.InitCompany()
@@ -233,7 +228,7 @@ dataSource2 = null;
     DialogConfig.autoFocus = true;
     DialogConfig.width = "45%";
     DialogConfig.data = { name: new ComputerWithProgram(), from: String };
-    DialogConfig.data.from = "new";
+    DialogConfig.data.from = "חדש";
     const dialogRef = this.dialog.open(DatachangeComponent, DialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       this.InitComputerWithProgram()
@@ -242,7 +237,6 @@ dataSource2 = null;
   editComputer: Computer;
   editComputerDetails: ComputerDetails;
   OnEdit(sId: number) {
-
     this.productSer.GetProductById(sId).subscribe(myData => {
       if (myData != null) {
         this.editComputer = myData
@@ -268,24 +262,14 @@ dataSource2 = null;
 
     }
     )
-    // const DialogConfig = new MatDialogConfig();
-    // DialogConfig.disableClose = true;
-    // DialogConfig.autoFocus = true;
-    // DialogConfig.width = "60%";
-    // DialogConfig.data = {editComputer:Product, editComputerDetails:ComputerDetails};
-    // DialogConfig.data.editComputer=this.editComputer;
-    // DialogConfig.data.editComputerDetails=this.editComputerDetails;
-    // const dialogRef = this.dialog.open(DatachangeComponent, DialogConfig);
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
     
   }
 
   OnDelete(id1: number) {
  
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'This product will be permanently deleted',
+      title: 'האם אתה בטוח?',
+      text: 'מוצר זה ימחק לצמיתות',
       cancelButtonColor: "#FF6600",
       confirmButtonColor: "#FF6600",
       showCancelButton: true,
@@ -298,7 +282,7 @@ dataSource2 = null;
         if (willDelete.isConfirmed) {
           if (this.computerWithProgramList.filter(c => c.Id == id1 && c.OrdersDate.length > 0).length > 0) {
             Swal.fire({
-              title: 'Are you sure?',
+              title: 'האם אתה בטוח?',
               text: 'למחשב זה יש הזמנות. אתה בטוח רוצה למחוק?',
               cancelButtonColor: "#FF6600",
               confirmButtonColor: "#FF6600",
@@ -309,11 +293,6 @@ dataSource2 = null;
 
               allowOutsideClick: () => !Swal.isLoading()
             }).
-              // Swal.fire(
-              //   'Are you sure?',
-              //   'למחשב זה יש הזמנות. אתה בטוח רוצה למחוק?',
-              //   'question',
-              // ).
               then((willDelete) => {
                 if (willDelete.isConfirmed) {
                   this.removeComuter(id1);
@@ -323,17 +302,14 @@ dataSource2 = null;
           else {
             this.removeComuter(id1);
           }
-
         }
       })
   }
 
   removeComuter(id1: number) {
     this.computerWithprogrameSer.removeComputer(id1).subscribe(myData => {
-      debugger
       this.dataSource = myData
       console.log("delete Computer  ", myData);
-
     });
 
   }
@@ -341,8 +317,8 @@ dataSource2 = null;
   OnDeleteProgram(id:number)
   {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'This Program will be permanently deleted',
+      title: 'האם אתה בטוח?',
+      text: 'מוצר זה ימחק לצמיתות',
       cancelButtonColor: "#FF6600",
       confirmButtonColor: "#FF6600",
       showCancelButton: true,
@@ -354,7 +330,6 @@ dataSource2 = null;
       .then((willDelete) => {
         if (willDelete.isConfirmed) {
           this.programSer.RemoveProgram(id).subscribe(myData => {
-            debugger
             this.programSer.list = myData
             console.log("delete Computer  ", myData);
             this.ProgramList=myData
@@ -363,10 +338,11 @@ dataSource2 = null;
         }
       })
   }
+
   OnDeleteCompany(id1: number) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'This Company will be permanently deleted',
+      title: 'האם אתה בטוח?',
+      text: 'מוצר זה ימחק לצמיתות',
       cancelButtonColor: "#FF6600",
       confirmButtonColor: "#FF6600",
       showCancelButton: true,
@@ -378,7 +354,6 @@ dataSource2 = null;
       .then((willDelete) => {
         if (willDelete.isConfirmed) {
           this.companySer.RemoveCompany(id1).subscribe(myData => {
-            debugger
             this.CompanyList = myData
             console.log("delete Computer  ", myData);
 
@@ -386,6 +361,14 @@ dataSource2 = null;
         }
       })
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource1.filter = filterValue.trim().toLowerCase();
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().valueOf();
+    this.dataSource1.filter = filterValue.trim().valueOf();
+    this.dataSource2.filter = filterValue.trim().valueOf();
+  }
 
 }

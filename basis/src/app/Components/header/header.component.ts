@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit,DoCheck {
 
   checkUserLevel(){
     // console.log("checkUserLevel",this.customerSer.CurrentCustomer)
-
-    if(this.customerSer.CurrentCustomer.Level==1){
+if(this.customerSer.CurrentCustomer!=null && this.customerSer.CurrentCustomer!=undefined)
+ {   if(this.customerSer.CurrentCustomer.Level==1){
       this.isManager=true;
     }
     else if(this.customerSer.CurrentCustomer.Level==2) 
@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit,DoCheck {
       this.isSecretery=true;  
     } 
   }
+}
   
   // isSticky: boolean = false;
   // @HostListener('window:scroll', ['$event'])
@@ -46,9 +47,9 @@ export class HeaderComponent implements OnInit,DoCheck {
   }
   
   logOut()
-  {
-    this.customerSer.CurrentCustomer=undefined;
+  {   
     this.router.navigate(['/existing/']);
+    this.customerSer.CurrentCustomer=undefined;
   }
 
   ngDoCheck()

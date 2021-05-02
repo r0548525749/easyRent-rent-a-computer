@@ -29,9 +29,17 @@
 <!-- (click)="HistoryUser(customers.Id)" -->
 
 <br><br>
+
 <router-outlet></router-outlet>
-<div *ngIf="this.ComputerListWithDate.length<1"> עדיין לא קיימות הזמנות</div>
-<div *ngIf="this.ComputerListWithDate.length>0" class="">
+<div *ngIf="undefined !==this.ComputerListWithDate&& this.ComputerListWithDate.length<1"> עדיין לא קיימות הזמנות</div>
+<div *ngIf="undefined !==this.ComputerListWithDate&&this.ComputerListWithDate.length>0" class="">
+    <div class="container" style="text-align: right;">
+
+        <mat-form-field>
+            <mat-label style="font-family: Calibri; color:#FF6600;">סינון</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input matSort>
+        </mat-form-field>
+    </div>
     <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
 
         <!-- Position Column -->
@@ -50,13 +58,13 @@
             <td mat-cell *matCellDef="let element" (click)="changeDate(element.orderID)"> {{element.dateE | date: 'dd/MM/yyyy hh:mm'}} </td>
         </ng-container>
         <ng-container matColumnDef="CompanyName">
-            <th mat-header-cell *matHeaderCellDef> שם חברה </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> שם חברה </th>
             <td mat-cell *matCellDef="let element"> {{element.CompanyName}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="Type">
-            <th mat-header-cell *matHeaderCellDef> סוג </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> סוג </th>
             <td mat-cell *matCellDef="let element"> {{element.Type}} </td>
         </ng-container>
 
@@ -91,6 +99,11 @@
         <ng-container matColumnDef="RemoveItem">
             <th mat-header-cell *matHeaderCellDef> מחיקה </th>
             <td mat-cell *matCellDef="let element"> <button mat-button (click)="removeItem(element.orderID)"><mat-icon>delete</mat-icon></button></td>
+        </ng-container>
+
+        <ng-container matColumnDef="AddNewOrder">
+            <th mat-header-cell *matHeaderCellDef> הזמנה נוספת </th>
+            <td mat-cell *matCellDef="let element"> <button mat-button (click)="create(element)"><mat-icon>add</mat-icon></button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

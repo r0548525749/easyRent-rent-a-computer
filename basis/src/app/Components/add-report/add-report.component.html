@@ -18,6 +18,8 @@
         <br><br>
         <!-- Phone number -->
         <input type="text" formControlName="telephon1" id="defaultRegisterPhonePassword" class="form-control" placeholder="מספר טלפון" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <!-- Phone number -->
+        <input type="text" formControlName="idComputer" [(ngModel)]="complain.IdComputer" name="idComputer" id="defaultRegisterPhonePassword" class="form-control" placeholder="קוד מחשב" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 
         <!-- Subject -->
         <label>נושא</label>
@@ -32,17 +34,11 @@
 
         <!-- Message -->
         <div class="form-group">
-            <textarea class="form-control rounded-0" formControlName="complain" id="exampleFormControlTextarea2" rows="3" placeholder="פרטי התלונה"></textarea>
+            <textarea class="form-control rounded-0" formControlName="complain" [(ngModel)]="complain.Complaints" id="exampleFormControlTextarea2" rows="3" placeholder="פרטי התלונה"></textarea>
         </div>
-
-        <!-- Copy -->
-        <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-            <label class="custom-control-label" for="defaultContactFormCopy">שלח לי עותק של הודעה זו</label>
-        </div>
-
+        <br>
         <!-- Send button -->
-        <button class="btn btn-info btn-block" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" type="submit">שלח</button>
+        <button class="btn btn-info btn-block" [disabled]="this.reportForm.invalid" style="background-color: #FF6600;border-color: #333333;height:1.1cm;" type="submit">שלח</button>
 
     </form>
     <!-- Default form contact -->

@@ -108,7 +108,6 @@
         <!-- <button href="#addSoftwerModal" class="btn btn-success" data-toggle="modal" mat-raised-button routerLink="/viewBag"><i class="material-icons">&#xE147;</i> <span>view Shopping Bag</span></button> -->
         <br><br>
         <!-- הצגת הטבלה -->
-
         <div class="container" *ngIf="shwoButton2" style="text-align: center; ">
             <table class="table" dir="rtl">
                 <thead>
@@ -120,6 +119,8 @@
                         <th>זיכרון </th>
                         <th>דיסק קשיח </th>
                         <th>גודל מסך </th>
+                        <th>מחיר ליום </th>
+                        <th>מחיר לשעה </th>
                         <th>תוכנות </th>
                         <th style="width: 20%;">תמונה </th>
                     </tr>
@@ -138,6 +139,8 @@
                             <td>{{s.Memory}}</td>
                             <td>{{s.HardDisk}}</td>
                             <td>{{s.ScreenSize}}</td>
+                            <td>{{s.PriceDay}}שח</td>
+                            <td>{{s.PriceHour}}שח</td>
                             <td>
                                 <!-- הצגה של התוכנות עם פסיקים -->
                                 <label *ngFor="let p of s.Programslist ; let i = index">
@@ -175,10 +178,14 @@
                         This device has an {{s.computer.Prossess}} processor and the screen resolution is {{s.computer.ScreenSize}} amount of memory. This device has {{s.computer.Memory}} and the hard disk is {{s.computer.HardDisk}}. As well as the software that is on the computer
                         there are also :
                         <br>
+                        <!-- <p>מחיר ליום:{{s.PriceDay}}</p>
+                        <p>מחיר ליום:{{s.PriceHour}}</p> -->
                         <label *ngFor="let p of s.computer.Programslist ; let i = index">
                         {{p.ProgramName}}
                         <span *ngIf="i<s.computer.Programslist.length-1">,</span>
                         </label> programs.
+
+
                     </p>
                     <button (click)="s.date=!s.date" mat-button style="font-family: Calibri;color: grey;font-weight: bold;text-align: right">בחירת תאריך</button>
                     <p *ngIf="s.date">
@@ -186,7 +193,6 @@
                     </p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <!-- <button mat-button>SHARE</button> -->
                 </mat-card-actions>
                 <mat-card-footer></mat-card-footer>
             </mat-card>
